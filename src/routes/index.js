@@ -5,7 +5,21 @@ var userController = require("../controllers/userController");
 // Rota raiz dentro do grupo /
 router.get('/', function(req, res) {
     if (!req.session.authenticated) {
-        res.render('login'); // Defina o valor de userId conforme necessário
+
+        let errorMessage = '';
+        let hasError = false;
+
+        if(req.session.hasError){
+            errorMessage = req.session.errorMessage;
+            hasError = req.session.hasError;
+            console.log(errorMessage);
+        }
+
+        res.render('login', { 
+            hasError: hasError,
+            errorMessage: errorMessage
+         });
+
     }else{
         res.redirect('/dashboard');
     }

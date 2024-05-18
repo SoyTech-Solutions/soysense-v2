@@ -10,6 +10,19 @@
     <script src="./js/login.js" defer></script>
 </head>
 <body> 
+    <% if (hasError) { %>
+        <div id="modalErro" class="modal">
+            <div class="modal-content" id="modalContent">
+                <div class="header-modal-erro">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/box-important--v1.png"
+                        alt="box-important--v1" />
+                </div>
+                <div class="modal-erros" id="modal_erros">
+                   <p style="text-align: center; color: red;"> <%= errorMessage %> </p>
+                </div>
+            </div>
+        </div>
+    <% } %>
     <div class="login-box">
         <h1>Login</h1>
         <form action="/" method="POST" id="form_login">
@@ -29,17 +42,6 @@
                 <button type="submit">Entrar</button>
             </div>
         </form>
-    </div>
-    <div id="modalErro" class="modal">
-        <div class="modal-content" id="modalContent">
-            <div class="header-modal-erro">
-                <img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/box-important--v1.png"
-                    alt="box-important--v1" />
-            </div>
-            <div class="modal-erros" id="modal_erros">
-
-            </div>
-        </div>
     </div>
 </body>
 </html>
