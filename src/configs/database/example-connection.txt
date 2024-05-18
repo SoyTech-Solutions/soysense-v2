@@ -1,0 +1,2 @@
+// const database = require('./connection');
+// database.execute('select * from empresa');
