@@ -17,6 +17,7 @@ function login(req,res){
                 };
                 res.redirect('/dashboard')
             }else{
+                console.log('eu vim pra aqui')
                 req.session.authenticated = false
                 req.session.hasError = true;
                 req.session.errorMessage = 'Usuário ou senha incorreta. Tente novamente!'

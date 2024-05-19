@@ -47,6 +47,12 @@ var dashboardRouter = require("./src/routes/dashboard");
 
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
+
+
+// rota de teste
+var testeRouter = require('./src/routes/teste');
+
+app.use('/teste', testeRouter);
 // =====================================
 
 // ========= ABRINDO SERVIDOR ==========
