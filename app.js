@@ -52,6 +52,9 @@ app.use('/dashboard', dashboardRouter);
 // rota de teste
 var testeRouter = require('./src/routes/teste');
 
+// criando o grupo de rota principal /teste
+// qualquer rotas criadas dentro do testeRouter, é
+// apartir desse /teste
 app.use('/teste', testeRouter);
 // =====================================
 

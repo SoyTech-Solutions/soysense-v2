@@ -31,12 +31,22 @@
         <button type="submit">Cadastrar</button>
     </form>
 
-    <br>
-    <br>
+
+
+
+
+
+    <!-- verifica se ja foi cadastro -->
+    <!-- se sim, manda a mensagem que ja foi cadastrado -->
     <% if (estaCadastrado) { %>
-        <p id="mensagem-de-cadastro">Cadastrado com sucesso </p>
+        <p id="mensagem-de-cadastro">Já foi cadastrado com sucesso!</p>
     <% } %>
 
+
+
+
+
+    <!-- script para remover a mensagem que aparecer pós cadastro -->
     <script>
         let mensagemElemento = document.querySelector('#mensagem-de-cadastro');
 

@@ -1,4 +1,4 @@
-var database = require('../configs/database/connection');
+var database = require('../configs/database/connection'); 
 
 function autenticarLogin(email, senha) {
     console.log("User Model accessed > function autenticarLogin");
