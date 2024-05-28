@@ -1,0 +1,246 @@
+
+/* card 1 */
+.summary-card{
+    width: 20% !important;
+}
+.summary-card:nth-child(1) > .summary-footer{
+    background-color: rgb(208, 22, 22);
+}
+.summary-card:nth-child(1) > .summary-main{
+    background-color: rgb(235, 22, 22);
+    color: #fff;
+}
+.summary-card:nth-child(1) > .summary-main > span{
+    font-weight: bolder;
+}
+.summary-card:nth-child(1) > .summary-main h1{
+    font-size: 40px;
+    margin-top: 15px;
+}
+
+
+/* card 2 */
+.summary-card:nth-child(2) > .summary-footer{
+    background-color: #ff1f1f;
+}
+.summary-card:nth-child(2) > .summary-main{
+    background-color: #ff0000;
+    color: #fff;
+}
+.summary-card:nth-child(2) > .summary-main > span{
+    font-weight: bolder;
+}
+.summary-card:nth-child(2) > .summary-main h1{
+    font-size: 40px;
+    margin-top: 15px;
+}
+
+/* card 3 */
+.summary-card:nth-child(3) > .summary-footer{
+    background-color: #33be33;
+    
+}
+.summary-card:nth-child(3) > .summary-main{
+    background-color: #5cb85cad;
+   
+    color: #ffffff;
+}
+.summary-card:nth-child(3) > .summary-main > span{
+    font-weight: bolder;
+}
+.summary-card:nth-child(3) > .summary-main h1{
+    font-size: 40px;
+    margin-top: 15px;
+}
+/* card 4 */
+.summary-card:nth-child(4) > .summary-footer{
+    background-color: #ffc800;
+    
+}
+.summary-card:nth-child(4) > .summary-main{
+    background-color: hsl(47, 100%, 68%);
+   
+    color: #FFF;
+}
+.summary-card:nth-child(4) > .summary-main > span{
+    font-weight: bolder;
+}
+.summary-card:nth-child(4) > .summary-main h1{
+    font-size: 25px;
+    margin-top: 25px;
+}
+.summary-main{
+    height: calc(100% - 50px);
+    padding: 10px;
+}
+
+/* card 4 */
+.summary-card:nth-child(5) > .summary-footer{
+    background-color: #ffb217;
+}
+.summary-card:nth-child(5) > .summary-main{
+    background-color: #fecb66;
+    color: #FFF;
+}
+.summary-card:nth-child(5) > .summary-main > span{
+    font-weight: bolder;
+}
+.summary-card:nth-child(5) > .summary-main h1{
+    font-size: 25px;
+    margin-top: 25px;
+}
+.summary-main{
+    height: calc(100% - 50px);
+    padding: 10px;
+}
+/* Gráfico das fazendas com problemas */
+
+.problemas-container{
+    width: 90%;
+    height: 410px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.problemas-container h4{
+    text-align: center;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.problemas-container section{
+    margin: 20px auto 0 auto;
+    width: 55%;
+}
+
+.problemas-grafico{
+    margin: 30px auto 30px auto;
+    width: 100%; 
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+}
+
+
+
+/* Gráfico Registro de alertas*/
+
+.registro-container{
+    width: 90%;
+    margin: 30px auto 30px auto;
+    height: 410px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+.registro-container h4{
+    text-align: center;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.registro-container section{
+    margin: 20px 20px 0 20px;
+    width: 90%;
+    height: 80%;
+}
+
+.registro-grafico{
+    width: 100%; 
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+}
+
+/* div mãe dos gráficos Valor recuperado e problema nas fazenda */
+
+.DesempenhoRegistroGraficos{
+    width: 90%;
+    display: flex;
+    height: auto;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+#RegistroA{
+    display: block;
+    box-sizing: border-box;
+    height: 300px;
+    width: 300px;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+/*CSS dos graficos que NÃO vamos usar*/
+
+/* .GraficoFazendaProblemas {
+    width: 50%;
+    display: flex;
+    height: auto;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 10px;
+} */
+
+/* grafico de desempenho total*/
+/* .desempenho-container{
+    width: 90%;
+    height: 410px;
+    margin: 30px auto 30px auto;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.desempenho-container h4{
+    text-align: center;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+}
+.desempenho-container section{
+    margin: 20px auto 0 auto;
+    width: 95%;
+}
+.desempenho-grafico{
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+} */
+
+/* Gráfico do Valor Recuperado por mês
+
+.valor-container{
+    width: 90%;
+    height: 410px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.valor-container h4{
+    text-align: center;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+}
+
+.valor-container section{
+    margin: 20px 20px 0 20px;
+    width: 80%;
+}
+
+.valor-grafico{
+    width: 100%; 
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+} */

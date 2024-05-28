@@ -1,12 +1,293 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
+<link rel="shortcut icon" href="/icon/organizacao-_1_.ico">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>SoySense | Dashboard</title>
+    <!-- chart js lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- estático js script -->
+    <script src="/js/side-bar.js" defer></script>
+    <script src="/js/graficos-simulativo-dashboard.js" defer></script>
+
+
+
+
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/global-style.css">
+    <link rel="stylesheet" href="/css/side-bar.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/header-main.css">
 </head>
+
 <body>
-    <h1><%= userName %> Bem vindo</h1>   
-    <p> Usuário com o nome de <%= userName %>, id deste usuário no banco é <%= userId %>, o email de login é <%= userEmail %></p>
+    <aside class="side-bar">
+        <div class="logo-wrapper">
+            <img src="/icon/logo-soysense.png" />
+        </div>
+        <div class="profile-wrapper">
+            <div class="profile-picture">
+                <img src="/img/profile.jpg" />
+            </div>
+            <span>Empresa</span>
+            <h4><%= userName %></h4>
+        </div>
+        <div class="line-side-bar"></div>
+        <nav class="nav-side-bar">
+            <ul class="accordion-menu">
+                <li class="nav-normal-item dash-on">
+                    <a href="/dashboard">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/dashboard-layout.png"
+                            alt="dashboard-layout" />
+                        Dashboard
+                    </a>
+                </li>
+                <li class="accordion-item">
+                    <div class="accordion-item-header">
+                        <img width="20" height="20"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/maintenance.png"
+                            alt="maintenance" />
+                        <span>Gerenciar</span>
+                    </div>
+                    <ul class="accordion-submenu">
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp; Complexo</a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Sensor</a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);"
+                                    height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Gestor</a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);"
+                                    height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Funcionário</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="accordion-item">
+                    <div class="accordion-item-header alerta-item">
+                        <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/address.png"
+                            alt="address" />
+                        <span>Complexo</span>
+                    </div>
+                    <ul class="accordion-submenu ">
+                        <li class="accordion-subitem">
+                            <a href="/dashboard/fazenda" class="alerta-item"><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Fazenda X</a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href="fazenda.ejs"><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Fazenda Y</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="accordion-item">
+                    <div class="accordion-item-header">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/document--v1.png"
+                            alt="document--v1" />
+                        <span>Relatório</span>
+                    </div>
+                    <ul class="accordion-submenu">
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Desempenho</a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Rentabilidade</a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;;Anomalias</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-normal-item">
+                    <a href="">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/fine-print.png" alt="fine-print" />
+                        Benchmarking
+                    </a>
+                </li>
+                <li class="accordion-item">
+                    <div class="accordion-item-header">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/settings--v1.png"
+                            alt="settings--v1" />
+                        <span>Configuração</span>
+                    </div>
+                    <ul class="accordion-submenu">
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Perfil</a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Personalizar</a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Suporte</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="footer-aside">
+            <div class="logout-container">
+                <a href="#">
+                    <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/f13939/logout-rounded.png"
+                        alt="logout-rounded" />
+                    Sair
+                </a>
+            </div>
+        </div>
+    </aside>
+    <main class="main-dashboard">
+
+        <header class="header-dashboard">
+            <div class="inner-header">
+                <h1>Dashboard</h1>
+                <a href="#">/dashboard</a>
+            </div>
+        </header>
+        <section class="summary-container">
+            <div class="summary-card">
+                <div class="summary-main" id="temp-card">
+                    <span>Alerta: Temperatura</span>
+                    <h1 id="critico-titulo-temp"></h1>
+                </div>
+                <div class="summary-footer ">
+                    <h1>Crítico: Fazenda X</h1>
+                </div>
+            </div>
+            <!-- id="desempenho-titulo" -->
+            <div class="summary-card">
+                <div class="summary-main">
+                    <span>Alerta: Umidade</span>
+                    <h1>10%</h1> 
+                </div>
+                <div class="summary-footer ">
+                    <h1>Crítico: Fazenda Y</h1>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-main" id="umid-card">
+                    <span>2 fazendas</span>
+                    <h1>6 Lotes</h1>
+                </div>
+                <div class="summary-footer">
+                    <h1>Monitorando</h1>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-main">
+                    <span>Quantidade de Sensores</span>
+                    <h1>100 Sensores</h1>
+                </div>
+                <div class="summary-footer ">
+                    <h1>DHT11</h1>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-main">
+                    <span>Quantidade de Sensores</span>
+                    <h1>100 Sensores</h1>
+                </div>
+                <div class="summary-footer ">
+                    <h1>LM35</h1>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="DesempenhoRegistroGraficos">
+            <section class="registro-container">
+                <div class="registro-grafico">
+                    <h4>Registro de Alertas</h4>
+                    <section>
+                        <canvas id="RegistroA"></canvas>
+                    </section>
+                </div>
+            </section>
+
+            <section class="problemas-container">
+                <div class="problemas-grafico">
+                    <h4>Fazendas com problemas</h4>
+                    <section>
+                        <canvas id="FazendasProblemas"></canvas>
+                    </section>
+                </div>
+            </section>
+        </div>
+
+        </div>
+
+
+    </main>
 </body>
+
+
 </html>
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------- -->
+
+<!--  "Sections" de graficos que NÃO iremos usar -->
+
+            <!-- <section class="desempenho-container">
+                <div class="desempenho-grafico">
+                    <h4>Desempenho Total (%)</h4>
+                    <section>
+                        <canvas id="desempenhoT"></canvas>
+                    </section>
+                </div>
+            </section> -->
+
+
+            <!--  -->
+
+        <!-- <div class="GraficoFazendaProblemas"> 
+            <section class="problemas-container">
+                <div class="problemas-grafico">
+                    <h4>Fazendas com problemas</h4>
+                    <section>
+                        <canvas id="FazendasProblemas"></canvas>
+                    </section>
+                </div>
+            </section> -->
+
+            <!-- <section class="valor-container">
+                <div class="valor-grafico">
+                    <h4>Valor recuperado</h4>
+                    <section>
+                        <canvas id="valorRecuperado"></canvas>
+                    </section>
+                </div>
+            </section> -->
