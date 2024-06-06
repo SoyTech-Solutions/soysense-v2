@@ -67,8 +67,16 @@ var qtdLm35 = new Chart(
                   '#D9534F',
                 ],
                 hoverOffset: 2
-              }]
+              }],
         },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: 'Status dos Sensores'
+            }
+        }
     }
 );
 
