@@ -44,9 +44,11 @@ app.use(session({
 // ======= DEFINIÇÃO DE ROTAS ==========
 var indexRouter = require("./src/routes/index");
 var dashboardRouter = require("./src/routes/dashboard");
+var fazendaRouter = require("./src/routes/fazenda");
 
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/fazenda', fazendaRouter);
 
 
 // rota de teste
