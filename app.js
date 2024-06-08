@@ -77,5 +77,9 @@ try{
 }
 // ====================================]]
 
-// var database = require('./src/configs/database/connection');
+var database = require('./src/configs/database/connection');
+console.log(database.execute('SELECT * FROM usuario LIMIT 1'));
+
+
+
 

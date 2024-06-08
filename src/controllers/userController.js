@@ -4,7 +4,7 @@ function login(req,res){
     var email = req.body.email;
     var senha = req.body.senha;
     
-    userModel.autenticarLogin(email,senha).then((resultadoQuery)=>{
+    userModel.authLogin(email,senha).then((resultadoQuery)=>{
             console.log(resultadoQuery.success);
             if(resultadoQuery.success){
                 req.session.authenticated = true
@@ -26,8 +26,13 @@ function login(req,res){
 
         }
     );
-    
 }
+
+async function getMonitorsRegistered(userId){
+    return await userModel.getMonitorsRegistered(userId)
+ }
+ 
 module.exports = {
-    login
+    login,
+    getMonitorsRegistered
 }

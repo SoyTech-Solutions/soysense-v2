@@ -17,7 +17,7 @@ body{
     gap: 5px;
 }
 .row:nth-child(1) .col:nth-child(1){
-    width: 70%;
+    width: 100%;
 }
 .row:nth-child(1) .col:nth-child(2){
     width: 30%;

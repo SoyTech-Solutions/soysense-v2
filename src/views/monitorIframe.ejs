@@ -12,18 +12,11 @@
 <body>
     <div class="cadastro-box">
         <h1>Cadastre um monitor</h1>
-        <form id="form_cadastrar_monitor" action="/cadastro" method="POST">
+        <form id="form_cadastrar_monitor" action="/monitor/registrar" method="POST">
             <div class="row">
                 <div class="col">
                     <label>Usuário:</label>
                     <input id="input_usuario" type="text" required placeholder="Insira o usuário">
-                </div>
-                <div class="col">
-                    <label>Representa:</label>
-                    <select id="select_representa_fazenda">
-                        <option value="#">Escolher...</option>
-                        <option value="fazendaz">Fazenda Z</option>
-                    </select>
                 </div>
             </div>
             <div class="row">

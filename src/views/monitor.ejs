@@ -80,11 +80,6 @@
                         <li class="accordion-subitem">
                             <a href="/fazenda/2"><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Fazenda Y</a>
                         </li>
-                        <li class="accordion-subitem">
-                            <a href="/teste"><img width="10" style="transform: rotate(270deg);" height="10"
-                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                    alt="left-down2" />&nbsp; TESTE </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="accordion-item">
@@ -143,7 +138,7 @@
         <header class="header-dashboard">
             <div class="inner-header">
                 <h1>Gerenciar</h1>
-                <a href="/monitor">/Gestor</a>
+                <a href="/monitor">/monitor</a>
             </div>
         </header>
         <section class="search-container">
@@ -156,56 +151,44 @@
             <div class="main-table-container">
                 <table>
                     <tr>
-                        <th>Gestor</th>
+                        <th>Id</th>
+                        <th>Nome</th>
                         <th>Email</th>
-                        <th>Fazenda</th>
-                        <th>Gerenciar</th>
+                        <th>Cargo</th>
+                        <th>Ações</th>
                     </tr>
-                    <tr>
-                        <td>Fernanda <a class="you">(você)</a></td>
-                        <td>fernanda.caramico@sptech.school</td>
-                        <td>Dono(a)</td>
-                        <td>
-                            <button class="btn-edi">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/edit--v1.png" alt="edit--v1"/>
-                            </button>
-                            <button class="btn-del">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/trash--v1.png" alt="trash--v1"/>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Rafael</td>
-                        <td>rafael.brandao@sptech.school</td>
-                        <td>Fazenda X</td>
-                        <td>
-                            <button class="btn-edi">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/edit--v1.png" alt="edit--v1"/>
-                            </button>
-                            <button class="btn-del">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/trash--v1.png" alt="trash--v1"/>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Fernando</td>
-                        <td>fernando.souza@sptech.school</td>
-                        <td>Fazenda Y</td>
-                        <td>
-                            <button class="btn-edi">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/edit--v1.png" alt="edit--v1"/>
-                            </button>
-                            <button class="btn-del">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/trash--v1.png" alt="trash--v1"/>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
+                    <% let countMonitors = 0%>
+                    <% monitors.forEach((monitor)=>{ %>
+                        <tr>
+                            <td><%= monitor.idUsuario %></td>
+                            <td><%= monitor.usuario %> 
+                                <% if(monitor.idUsuario == userId){ %>
+                                    <span class="you">(você)</span>
+                                <% }%>
+                            </td>
+                            <td><%= monitor.email %></td>
+                            <% if(monitor.fkFazenda == null){ %>
+                                <td>Admin</td>
+                            <% }else{ %>
+                                <td>Monitor</td>
+                            <% } %>  
+                            <td>
+                                <button class="btn-edi">
+                                    <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/edit--v1.png" alt="edit--v1"/>
+                                </button>
+                                <button class="btn-del">
+                                    <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/trash--v1.png" alt="trash--v1"/>
+                                </button>
+                            </td>
+                        </tr>
+                        <% countMonitors++ %>
+                    <% }) %>
+                    
 
                 </table>
             </div>
             <div class="footer-table-container">
-                <p>Gestores registrados: <span>3</span></p>
+                <p>Gestores registrados: <span><%= countMonitors %></span></p>
                 <button id="openModalAdicionarMonitor">Adicionar +</button>
             </div>
         </section>
