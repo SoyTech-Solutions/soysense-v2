@@ -1,25 +1,25 @@
 /* -======================== */
 
 .summary-card:nth-child(1) > .summary-footer{
-    background-color: #F0AD4E;
+    background-color: #e68b04 !important;
 }
 .summary-card:nth-child(1) > .summary-main{
-    background-color: #f0ac4eaf;
+    background-color: #f89500  !important; 
     color: #fff;
 }
 
 .summary-card:nth-child(2) > .summary-footer{
-    background-color: #337AB7;
+    background-color: #047ecf;
 }
 .summary-card:nth-child(2) > .summary-main{
-    background-color: #3379b7c7;
+    background-color: #008ae6;
     color: #fff;
 }
 .summary-card:nth-child(3) > .summary-footer{
-    background-color: #5CB85C;
+    background-color: #249224;
 }
 .summary-card:nth-child(3) > .summary-main{
-    background-color: #5cb85cad;
+    background-color: #27a727;
     color: #FFF;
 }
 .summary-card:nth-child(4) > .summary-footer{

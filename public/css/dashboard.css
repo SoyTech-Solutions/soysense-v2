@@ -21,10 +21,10 @@
 
 /* card 2 */
 .summary-card:nth-child(2) > .summary-footer{
-    background-color: #ff1f1f;
+    background-color: rgb(208, 22, 22);
 }
 .summary-card:nth-child(2) > .summary-main{
-    background-color: #ff0000;
+    background-color: rgb(235, 22, 22);
     color: #fff;
 }
 .summary-card:nth-child(2) > .summary-main > span{
@@ -35,13 +35,14 @@
     margin-top: 15px;
 }
 
+
 /* card 3 */
 .summary-card:nth-child(3) > .summary-footer{
-    background-color: #33be33;
+    background-color: #249224;
     
 }
 .summary-card:nth-child(3) > .summary-main{
-    background-color: #5cb85cad;
+    background-color: #27a727;
    
     color: #ffffff;
 }
@@ -54,12 +55,11 @@
 }
 /* card 4 */
 .summary-card:nth-child(4) > .summary-footer{
-    background-color: #ffc800;
+    background-color: #047ecf;
     
 }
 .summary-card:nth-child(4) > .summary-main{
-    background-color: hsl(47, 100%, 68%);
-   
+    background-color: #008ae6; 
     color: #FFF;
 }
 .summary-card:nth-child(4) > .summary-main > span{
@@ -73,13 +73,13 @@
     height: calc(100% - 50px);
     padding: 10px;
 }
-
-/* card 4 */
+/* card 5 */
 .summary-card:nth-child(5) > .summary-footer{
-    background-color: #ffb217;
+    background-color: #e68b04;
+    
 }
 .summary-card:nth-child(5) > .summary-main{
-    background-color: #fecb66;
+    background-color: #f89500;
     color: #FFF;
 }
 .summary-card:nth-child(5) > .summary-main > span{
@@ -93,6 +93,7 @@
     height: calc(100% - 50px);
     padding: 10px;
 }
+
 /* Gráfico das fazendas com problemas */
 
 .problemas-container{
