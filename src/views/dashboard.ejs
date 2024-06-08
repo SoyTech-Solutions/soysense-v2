@@ -95,6 +95,11 @@
                                     src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
                                     alt="left-down2" />&nbsp;Fazenda Y</a>
                         </li>
+                        <li class="accordion-subitem">
+                            <a href="/teste"><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp; TESTE </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="accordion-item">
@@ -247,9 +252,94 @@
         </div>
 
         </div>
-
-
     </main>
+    <script>
+        /* Fazendas com problemas */
+
+        var FazendasProblemas = document.getElementById('FazendasProblemas').getContext('2d');
+        var Problemas =
+            new Chart(FazendasProblemas,        
+                        {
+                            type: 'pie',
+                            data: {
+                                labels: ['Fazenda x', 'Fazenda y'],
+                                datasets: [{
+                                    label: 'Quantidade de problemas',
+                                    data: [11, 7],
+                
+                                    backgroundColor: [
+                                    '#69E056',
+                                    '#FFF857',
+                                    ],
+                
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+
+
+        /* Registros d Alerts*/
+
+        var RegistroA = document.getElementById('RegistroA').getContext('2d');
+        var valor = 
+            new Chart(RegistroA,     
+                {
+
+                    type: 'line',
+                    data: {
+                        labels: [
+                            'Janeiro',
+                            'Fevereiro',
+                            'Março',
+                            'Abril',
+                            'Maio',
+                            'Junho',
+                            'Julho',
+                            'Agosto',
+                            'Setembro',
+                            'Outubro',
+                            'Novembro',
+                            'Dezembro'
+                        ],
+                        datasets: [
+                            {
+                                label: 'Fazenda X',
+                                data: [1,5,0,0,9,3,2,7,11,3,2,8],
+                                borderWidth: 3,
+                                pointRadius: 0,
+                                backgroundColor: '#69E056',
+                                borderColor: '#69E056'
+                            },
+                            {
+                                label: 'Fazenda Y',
+                                data: [0,3,4,3,6,4,8,2,1,7,6,4],
+                                borderWidth: 3,
+                                pointRadius: 0,
+                                backgroundColor: '#FFF857',
+                                borderColor: '#FFF857'
+                                
+                            }
+                        ]
+
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                
+    </script>
 </body>
 
 

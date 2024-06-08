@@ -42,4 +42,7 @@ router.get('/:fazendaId', function(req, res){
         res.redirect('/');
     }
 })
+
+
+// testando um ngc n mexe please
 module.exports = router;

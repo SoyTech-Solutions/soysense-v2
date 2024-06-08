@@ -12,14 +12,16 @@
 
     <!-- estático js script -->
     <script src="/js/side-bar.js" defer></script>
-    <script src="/js/open-monitor-iframe.js" defer></script>
+    <script src="/js/graficos-simulativo-fazenda.js" defer></script>
+
+
 
     <!-- styles -->
     <link rel="stylesheet" href="/css/global-style.css">
     <link rel="stylesheet" href="/css/side-bar.css">
-    <!-- <link rel="stylesheet" href="./css/dashboard.css"> -->
+    <link rel="stylesheet" href="/css/fazenda.css">
     <link rel="stylesheet" href="/css/header-main.css">
-    <link rel="stylesheet" href="/css/monitor.css">
+    <link rel="stylesheet" href="/css/fazenda-teste.css">
 </head>
 <body>
     <aside class="side-bar">
@@ -36,14 +38,14 @@
         <div class="line-side-bar"></div>
         <nav class="nav-side-bar">
             <ul class="accordion-menu">
-                <li class="nav-normal-item">
+                <li class="nav-normal-item dash-on">
                     <a href="/dashboard">
-                        <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/dashboard-layout.png" alt="dashboard-layout"/>    
+                        <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/dashboard-layout.png" alt="dashboard-layout"/>
                         Dashboard
                     </a>
                 </li>
                 <li class="accordion-item">
-                    <div class="accordion-item-header dash-on">
+                    <div class="accordion-item-header">
                         <img width="20" height="20" src="https://img.icons8.com/material-outlined/24/FFFFFF/maintenance.png" alt="maintenance"/>
                         <span>Gerenciar</span>
                     </div>
@@ -74,7 +76,7 @@
                         <span>Complexo</span>
                     </div>
                     <ul class="accordion-submenu">
-                        <li class="accordion-subitem">
+                        <li class="accordion-subitem ">
                             <a href="/fazenda/1" class="alerta-item"><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Fazenda X</a>
                         </li>
                         <li class="accordion-subitem">
@@ -105,7 +107,7 @@
                     </ul>
                 </li>
                 <li class="nav-normal-item">
-                    <a href="">
+                    <a href="">                    
                         <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/fine-print.png" alt="fine-print"/>                    
                         Benchmarking
                     </a>
@@ -142,81 +144,14 @@
 
         <header class="header-dashboard">
             <div class="inner-header">
-                <h1>Gerenciar</h1>
-                <a href="/monitor">/Gestor</a>
+                <h1>Complexo</h1>
+                <a href="#">/fazenda/teste</a>
             </div>
         </header>
-        <section class="search-container">
-            <div class="search-wrapper">
-                <input type="text" placeholder="Pesquisar...">
-                <button><img width="20" height="20" src="https://img.icons8.com/ios-filled/50/FFFFFF/search--v1.png" alt="search--v1"/></button>
-            </div>
+        <section class="lotes-container">
+            <h1>Lotes: Fazenda 1</h1>
+            <p style="color:black;">asd</p>
         </section>
-        <section class="table-container">
-            <div class="main-table-container">
-                <table>
-                    <tr>
-                        <th>Gestor</th>
-                        <th>Email</th>
-                        <th>Fazenda</th>
-                        <th>Gerenciar</th>
-                    </tr>
-                    <tr>
-                        <td>Fernanda <a class="you">(você)</a></td>
-                        <td>fernanda.caramico@sptech.school</td>
-                        <td>Dono(a)</td>
-                        <td>
-                            <button class="btn-edi">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/edit--v1.png" alt="edit--v1"/>
-                            </button>
-                            <button class="btn-del">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/trash--v1.png" alt="trash--v1"/>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Rafael</td>
-                        <td>rafael.brandao@sptech.school</td>
-                        <td>Fazenda X</td>
-                        <td>
-                            <button class="btn-edi">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/edit--v1.png" alt="edit--v1"/>
-                            </button>
-                            <button class="btn-del">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/trash--v1.png" alt="trash--v1"/>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Fernando</td>
-                        <td>fernando.souza@sptech.school</td>
-                        <td>Fazenda Y</td>
-                        <td>
-                            <button class="btn-edi">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/edit--v1.png" alt="edit--v1"/>
-                            </button>
-                            <button class="btn-del">
-                                <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/trash--v1.png" alt="trash--v1"/>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-
-                </table>
-            </div>
-            <div class="footer-table-container">
-                <p>Gestores registrados: <span>3</span></p>
-                <button id="openModalAdicionarMonitor">Adicionar +</button>
-            </div>
-        </section>
-        <div id="modalAdicionarMonitor" class="modal">
-            <div class="modal-content">
-                <div class="header-modal">
-                    <span class="close" id="closeAdicionarMonitor">&times;</span>
-                </div>
-                    <iframe src="/monitor/iframe" width="598" height="500"  frameborder="0"></iframe>
-            </div>
-        </div>
     </main>
 </body>
 
