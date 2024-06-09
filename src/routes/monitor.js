@@ -1,15 +1,38 @@
 const express = require('express');
 const router = express.Router();
+var userController = require("../controllers/userController");
 
 // Rota raiz dentro do grupo /dashboard
-router.get('/', function(req, res) {
+router.get('/', async function(req, res) {
+    if (req.session.authenticated) {
+
+        // dados do usuário
+        const user = req.session.user;
+
+        const monitorsResponse = await userController.getMonitorsRegistered(user.session_userId);
+        const monitors = monitorsResponse.bd_monitors;
+        
+        res.render('monitor', {
+            userId: user.session_userId,
+            userName: user.session_userName,
+            userEmail: user.session_userEmail,
+            monitors: monitors
+        });
+
+    }else{
+        req.session.hasError = true;
+        req.session.errorMessage = 'Faça login antes de acessar a aba de monitores!'
+        res.redirect('/');
+    }
+});
+router.get('/iframe', function(req, res) {
     if (req.session.authenticated) {
 
         // dados do usuário
         const user = req.session.user;
 
         
-        res.render('dashboard', {
+        res.render('monitorIframe', {
             userId: user.session_userId,
             userName: user.session_userName,
             userEmail: user.session_userEmail,
@@ -17,32 +40,11 @@ router.get('/', function(req, res) {
 
     }else{
         req.session.hasError = true;
-        req.session.errorMessage = 'Faça login antes de acessar a dashboard!'
+        req.session.errorMessage = 'Faça login antes de acessar a aba de monitores!'
         res.redirect('/');
     }
 });
 
-router.get('/:fazendaId', function(req, res){
-    if (req.session.authenticated) {
-
-        // dados do usuário
-        const user = req.session.user;
-        const fazendaId = req.params.fazendaId
-        
-        res.render('fazenda', {
-            userId: user.session_userId,
-            userName: user.session_userName,
-            userEmail: user.session_userEmail,
-            fazendaId: fazendaId
-        });
-
-    }else{
-        req.session.hasError = true;
-        req.session.errorMessage = 'Faça login antes de acessar a dashboard!'
-        res.redirect('/');
-    }
-})
 
 
-// testando um ngc n mexe please
 module.exports = router;

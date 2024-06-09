@@ -32,5 +32,6 @@ router.post('/cadastrar', function(req,res){
     testeController.validarCadastro(req, res);
 })
 
+
 // exportando esse grupo de rotas
 module.exports = router;

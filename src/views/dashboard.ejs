@@ -59,24 +59,22 @@
                     </div>
                     <ul class="accordion-submenu">
                         <li class="accordion-subitem">
+                            <a href="/monitor"><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp; Monitor 
+                            </a>
+                        </li>
+                        <li class="accordion-subitem">
                             <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
                                     src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                    alt="left-down2" />&nbsp; Complexo</a>
+                                    alt="left-down2" />&nbsp; Complexo
+                            </a>
                         </li>
                         <li class="accordion-subitem">
                             <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
                                     src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                    alt="left-down2" />&nbsp;Sensor</a>
-                        </li>
-                        <li class="accordion-subitem">
-                            <a href=""><img width="10" style="transform: rotate(270deg);"
-                                    height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                    alt="left-down2" />&nbsp;Gestor</a>
-                        </li>
-                        <li class="accordion-subitem">
-                            <a href=""><img width="10" style="transform: rotate(270deg);"
-                                    height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                    alt="left-down2" />&nbsp;Funcionário</a>
+                                    alt="left-down2" />&nbsp;Sensor
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -208,21 +206,21 @@
 
             <div class="summary-card">
                 <div class="summary-main">
-                    <span>Quantidade de Sensores</span>
-                    <h1>100 Sensores</h1>
+                    <span>Sensor: DHT11</span>
+                    <h1>100 Unidades</h1>
                 </div>
                 <div class="summary-footer ">
-                    <h1>DHT11</h1>
+                    <h1>Umidade</h1>
                 </div>
             </div>
 
             <div class="summary-card">
                 <div class="summary-main">
-                    <span>Quantidade de Sensores</span>
-                    <h1>100 Sensores</h1>
+                    <span>Sensor: LM35</span>
+                    <h1>100 Unidades</h1>
                 </div>
                 <div class="summary-footer ">
-                    <h1>LM35</h1>
+                    <h1>Temperatura</h1>
                 </div>
             </div>
         </section>
@@ -249,9 +247,94 @@
         </div>
 
         </div>
-
-
     </main>
+    <script>
+        /* Fazendas com problemas */
+
+        var FazendasProblemas = document.getElementById('FazendasProblemas').getContext('2d');
+        var Problemas =
+            new Chart(FazendasProblemas,        
+                        {
+                            type: 'pie',
+                            data: {
+                                labels: ['Fazenda x', 'Fazenda y'],
+                                datasets: [{
+                                    label: 'Quantidade de problemas',
+                                    data: [11, 7],
+                
+                                    backgroundColor: [
+                                    '#69E056',
+                                    '#FFF857',
+                                    ],
+                
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+
+
+        /* Registros d Alerts*/
+
+        var RegistroA = document.getElementById('RegistroA').getContext('2d');
+        var valor = 
+            new Chart(RegistroA,     
+                {
+
+                    type: 'line',
+                    data: {
+                        labels: [
+                            'Janeiro',
+                            'Fevereiro',
+                            'Março',
+                            'Abril',
+                            'Maio',
+                            'Junho',
+                            'Julho',
+                            'Agosto',
+                            'Setembro',
+                            'Outubro',
+                            'Novembro',
+                            'Dezembro'
+                        ],
+                        datasets: [
+                            {
+                                label: 'Fazenda X',
+                                data: [1,5,0,0,9,3,2,7,11,3,2,8],
+                                borderWidth: 3,
+                                pointRadius: 0,
+                                backgroundColor: '#69E056',
+                                borderColor: '#69E056'
+                            },
+                            {
+                                label: 'Fazenda Y',
+                                data: [0,3,4,3,6,4,8,2,1,7,6,4],
+                                borderWidth: 3,
+                                pointRadius: 0,
+                                backgroundColor: '#FFF857',
+                                borderColor: '#FFF857'
+                                
+                            }
+                        ]
+
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                
+    </script>
 </body>
 
 

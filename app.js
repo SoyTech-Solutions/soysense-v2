@@ -45,10 +45,12 @@ app.use(session({
 var indexRouter = require("./src/routes/index");
 var dashboardRouter = require("./src/routes/dashboard");
 var fazendaRouter = require("./src/routes/fazenda");
+var monitorRouter = require('./src/routes/monitor')
 
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/fazenda', fazendaRouter);
+app.use('/monitor', monitorRouter)
 
 
 // rota de teste
@@ -75,5 +77,9 @@ try{
 }
 // ====================================]]
 
-// var database = require('./src/configs/database/connection');
+var database = require('./src/configs/database/connection');
+console.log(database.execute('SELECT * FROM usuario LIMIT 1'));
+
+
+
 

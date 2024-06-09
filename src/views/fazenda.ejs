@@ -50,16 +50,22 @@
                     </div>
                     <ul class="accordion-submenu">
                         <li class="accordion-subitem">
-                            <a href=""><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp; Complexo</a>
+                            <a href="/monitor"><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp; Monitor 
+                            </a>
                         </li>
                         <li class="accordion-subitem">
-                            <a href=""><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Sensor</a>
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp; Complexo
+                            </a>
                         </li>
                         <li class="accordion-subitem">
-                            <a href=""><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Gestor</a>
-                        </li>
-                        <li class="accordion-subitem">
-                            <a href=""><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Funcionário</a>
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Sensor
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -70,10 +76,10 @@
                     </div>
                     <ul class="accordion-submenu">
                         <li class="accordion-subitem ">
-                            <a href="" class="alerta-item"><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Fazenda X</a>
+                            <a href="/fazenda/1" class="alerta-item"><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Fazenda X</a>
                         </li>
                         <li class="accordion-subitem">
-                            <a href=""><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Fazenda Y</a>
+                            <a href="/fazenda/2"><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Fazenda Y</a>
                         </li>
                     </ul>
                 </li>
@@ -262,6 +268,154 @@
             </div>
         </section>
     </main>
+    <script>
+        var umidCard = document.querySelector('#umid-card');
+        var tempCard = document.querySelector('#temp-card');
+
+
+        /* -- lm35Temperatura */
+        var contextoLm35Temperatura = document.getElementById('lm35Temperatura').getContext('2d');
+        var lm35Temperatura = new Chart(
+            contextoLm35Temperatura,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Temperatura',
+                        type: 'line',
+                        borderColor: ['#ffd902'],
+                        backgroundColor: ['#ffe13588']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true,
+                                fontSize: 10
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Temperatura'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+
+        /* -- qtd lm35 */
+        var contextoQtdLm35 = document.getElementById('qtdLm35').getContext('2d');
+        var qtdLm35 = new Chart(
+            contextoQtdLm35,
+            {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        backgroundColor: ['#45b4e794']
+                    }],
+                    labels: [
+                        'Ativos',
+                        'Inativos',
+                    ],
+                    datasets: [{
+                        data: [10, 1],
+                        backgroundColor: [
+                        '#337AB7',
+                        '#D9534F',
+                        ],
+                        hoverOffset: 2
+                    }]
+                },
+            }
+        );
+
+
+
+        /* -- dht11Umidade -- */
+        var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
+        var dht11Umidade = new Chart(
+            contextoDht11Umidade,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        backgroundColor: ['#45b4e794']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true,
+                                fontSize: 10
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade',
+
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- qtd dht11 */
+        var contextoQtdDht11 = document.getElementById('qtdDht11').getContext('2d');
+        var qtdDht11 = new Chart(
+            contextoQtdDht11,
+            {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [9, 11],
+                        backgroundColor: [
+                            '#D9534F', // Cor para os sensores inativos
+                            '#337AB7', // Cor para os sensores ativos
+                        ],
+                        hoverOffset: 2
+                    }],
+                    labels: [
+                        'Inativos', // Rótulo para os sensores inativos
+                        'Ativos',   // Rótulo para os sensores ativos
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    title: {
+                        display: true,
+                        text: 'Status dos Sensores'
+                    }
+                }
+            }
+        );
+
+    </script>
 
 </body>
 
