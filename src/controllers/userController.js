@@ -30,9 +30,41 @@ function login(req,res){
 
 async function getMonitorsRegistered(userId){
     return await userModel.getMonitorsRegistered(userId)
- }
+}
+
+async function registerMonitor(req, res){
+    const usuario = req.body.usuario;
+    const email = req.body.email;
+    const senha = req.body.senha;
+    const senhaConfirmacao = req.body.senhaConfirmacao;
+
+    if(usuario != '' && email != '' && senha != '' && senhaConfirmacao != ''){
+        if(email.includes('@') && email.includes('.')){
+            if(senha == senhaConfirmacao){
+                req.session.hasBeenRegistered = true;
+                // userModel.registerMonitor(usuario, email, senha, );
+                return 
+            }else{
+                req.session.hasError = true;
+                req.session.errorMessage = 'As senhas não combinam! Tente novamente.'
+                return 
+            }
+        }else{
+            req.session.hasError = true;
+            req.session.errorMessage = 'Email inválido! Tente outro.'
+            return 
+        }
+    }else{
+        req.session.hasError = true;
+        req.session.errorMessage = 'Preencha todos os campos!'
+        return 
+    }
+
+}
+
  
 module.exports = {
     login,
-    getMonitorsRegistered
+    getMonitorsRegistered,
+    registerMonitor
 }

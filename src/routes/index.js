@@ -12,6 +12,10 @@ router.get('/', function(req, res) {
         if(req.session.hasError){
             errorMessage = req.session.errorMessage;
             hasError = req.session.hasError;
+
+            delete req.session.hasError;
+            delete req.session.errorMessage;
+            
             console.log(errorMessage);
         }
 

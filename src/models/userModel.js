@@ -75,7 +75,7 @@ async function getMonitorsRegistered(userId) {
         
     if (empresaResponse.success) {
         const sqlCommand = `
-            SELECT idUsuario, usuario, email, fkFazenda
+            SELECT idUsuario, usuario, email, administrador
             FROM usuario 
             WHERE fkEmpresa = ${empresaResponse.bd_idEmpresa};
         `;
