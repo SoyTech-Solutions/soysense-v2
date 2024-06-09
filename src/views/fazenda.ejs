@@ -263,9 +263,41 @@
                 </div>
             </div>
             <div class="direita-section">
-                <div class="grafico-pizza"><canvas id="qtdDht11"></canvas></div>
-                <div class="grafico-pizza"><canvas id="qtdLm35"></canvas></div>
-            </div>
+                <div class="graficos-direita">
+                    <div class="container-graficos-pizza">
+                    <div class="grafico-pizza"><canvas id="qtdDht11"></canvas>
+                    </div>
+                    <table class="table-umid">
+                        <tr>
+                            <th>Sensores</th><th>Desempenho</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                21/9
+                            </td>
+                            <td>
+                                57%
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                    <div class="container-graficos-pizza">
+                        <div class="grafico-pizza"><canvas id="qtdLm35"></canvas>
+                        </div>
+                        <table class="table-temp">
+                            <tr>
+                                <th>Sensores</th><th>Desempenho</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    11/1
+                                </td>
+                                <td>
+                                    91%
+                                </td>
+                            </tr>
+                        </table>
+                        </div>
         </section>
     </main>
     <script>
@@ -336,9 +368,17 @@
                         '#337AB7',
                         '#D9534F',
                         ],
-                        hoverOffset: 2
+                        hoverOffSet: 2
                     }]
                 },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    title: {
+                        display: true,
+                        text: 'Status dos Sensores (LM35)'
+                    }
+                }
             }
         );
 
@@ -409,7 +449,7 @@
                     maintainAspectRatio: false,
                     title: {
                         display: true,
-                        text: 'Status dos Sensores'
+                        text: 'Status dos Sensores (DHT11)'
                     }
                 }
             }

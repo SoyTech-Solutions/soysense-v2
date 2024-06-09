@@ -37,7 +37,7 @@
     font-size: 35px;
     padding-left: 30px;
 }
-.temp-container{
+/* .temp-container{
     width: 90%;
     height: 250px;
     margin: 15px auto 5px auto;
@@ -86,11 +86,11 @@
     align-items: center;
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     font-size: 15px;
-}
+} */
 .table-temp {
     border-collapse: collapse;
-    width: 85%;
-    height: 35%;
+    width: 30%;
+    height: 40px;
     margin: 0 auto 0 auto;
     border: 1px solid rgba(0, 0, 0, 0.267);
     
@@ -114,7 +114,7 @@
 
 /* umid side */
 
-.umid-container{
+/* .umid-container{
     width: 90%;
     height: 260px;
     margin: 10px auto 5px auto;
@@ -165,11 +165,11 @@
     align-items: center;
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     font-size: 15px;
-}
+} */
 .table-umid {
     border-collapse: collapse;
-    width: 85%;
-    height: 35%;
+    width: 30%;
+    height: 40px;
     margin: 0 auto 0 auto;
     border: 1px solid rgba(0, 0, 0, 0.267);
     
@@ -203,13 +203,13 @@
  .section-graficos{
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 10px;
     flex-direction: row;
+    margin-left: -25px;
  }
  .esquerda-section{
     width: 40%;
-    height: 60%;
-    margin-top: 40px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -218,9 +218,8 @@
  .direita-section{
     width: 50%;
     height: 90%;
-    margin-top: 75px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
  }
@@ -228,21 +227,40 @@
     border-radius: 7px;
     box-shadow: 0 0 1em #9e9e9e;
     margin: 20px;
-    height: 200px;
-    width: 400px;
+    height: 230px;
+    width: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px;
  }
- .grafico-pizza{
+ .graficos-direita{
+    display: flex;
+    flex-direction: row;
+ }
+ .container-graficos-pizza{
     border-radius: 7px;
     box-shadow: 0 0 1em #9e9e9e;
     margin: 20px;
-    height: 300px;
-    width: 300px;
+    height: 480px;
+    width: 250px;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     padding: 20px;
  }
+ .grafico-pizza{
+    height: 300px;
+    margin-bottom: 40px;
+ }
+ .tabelas{
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
+ }
+ /* .titulo-tabelas{
+    text-align: center;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+    padding: 5px;
+} */
