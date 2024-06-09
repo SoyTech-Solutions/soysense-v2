@@ -77,12 +77,12 @@ async function getMonitorsRegistered(userId) {
         const sqlCommand = `
             SELECT idUsuario, usuario, email, administrador
             FROM usuario 
-            WHERE fkEmpresa = ${empresaResponse.bd_idEmpresa};
+            WHERE fkEmpresa = ? ;
         `;
         
         console.log('Running SQL command: \n' + sqlCommand);
 
-        const resultQuery = await database.execute(sqlCommand);
+        const resultQuery = await database.execute(sqlCommand, [empresaResponse.bd_idEmpresa]);
 
         if (resultQuery && resultQuery.length > 0) {
             return {
@@ -109,15 +109,13 @@ async function registerMonitor(idAdmin, username, email, password){
     const empresaResponse = await getEmpresaByUsuario(idAdmin);
 
     if(empresaResponse.success) {
-        
         const sqlCommand = `
-            INSERT INTO usuario VALUE
-            (DEFAULT, '${username}','${email}','${password}', FALSE, ${empresaResponse.bd_idEmpresa}, NULL);
+            INSERT INTO usuario VALUE (DEFAULT, ?, ?, ?, FALSE, ?, NULL)
         `;
-    
+
         console.log('Running SQL command: \n' + sqlCommand);
 
-        return await database.execute(sqlCommand);
+        return await database.execute(sqlCommand, [username, email, password, empresaResponse.bd_idEmpresa]);
 
     }else {
         return {

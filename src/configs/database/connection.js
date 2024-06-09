@@ -32,53 +32,48 @@ var sqlServerConfig = {
     }
 
 // função que recebe um comando sql como parametro para ser executado
-function execute(sqlCommand){
-    // verificar se o ambiente é produção ou desenvolvimento*
+function execute(sqlCommand, params = []) {
     if (process.env.NODE_ENV == "production") {
-        // se ambiente é de produção (usar o Azure Cloud, SQL Server)
-        return new Promise(function (resolve, reject) { // cria uma promessa 
-            sql.connect(sqlServerConfig).then(function () { // conectar com as credenciais definida
-                return sql.query(sqlCommand); // então retornar o valor da query com a instrução no "sql command"
-            }).then(function (result) { // usar o resultado da query
-                console.log(result); // para apresentar no console
-                resolve(result.recordset); // e solucionar a promessa
-            }).catch(function (error) { // caso um problema aconteça no processo
-                reject(error); // quebra a promessa
-                console.log(`\x1b[31m Error when executing SQL command: \n\x1b[0m ${error}`); // e apresenta o erro
+        return new Promise(function (resolve, reject) {
+            sql.connect(sqlServerConfig).then(function () {
+                return sql.query(sqlCommand, params); // Passando os parâmetros aqui
+            }).then(function (result) {
+                console.log(result);
+                resolve(result.recordset);
+            }).catch(function (error) {
+                reject(error);
+                console.log(`\x1b[31m Error when executing SQL command: \n\x1b[0m ${error}`);
             });
 
-            // Captura eventos de erro na conexão com o SQL Server
             sql.on('error', function (error) {
                 return (`\x1b[31m Some error happened in SQL Server (Azure Cloud): \n\x1b[0m ${error} `);
             });
         });
-    }else if(process.env.NODE_ENV == "development"){
-        // se ambiente de desenvolvimento (usar o localhost, MySQL)
+    } else if (process.env.NODE_ENV == "development") {
         return new Promise(function (resolve, reject) {
-            var connection = mysql.createConnection(mySqlConfig); // faz uma instancia com as credenciais definida
-            connection.connect(); // abre a conexão
-            connection.query(sqlCommand, function (error, result) { // executa uma query com a instrução no "sql comand"
-                connection.end(); // finaliza a conexão
-                if (error) { // em caso de erro
-                    reject(error); // quebre a promessa
+            var connection = mysql.createConnection(mySqlConfig);
+            connection.connect();
+            connection.query(sqlCommand, params, function (error, result) { // Passando os parâmetros aqui
+                connection.end();
+                if (error) {
+                    reject(error);
                 }
-                console.log(result); // apresente o resultado 
-                resolve(result); // solucione a promessa
+                console.log(result);
+                resolve(result);
             });
 
-            // Captura eventos de error na conexão com o MySQL Workbench
             connection.on('error', function (error) {
                 return (`\x1b[31m Some error happened MySQL (Workbench localhost):\n\x1b[0m ${error.sqlMessage}`);
             });
         });
-    }else{
-        // variáveis de ambiente deve ser setadas antes de conectar
+    } else {
         return new Promise(function (resolve, reject) {
             console.log(`\x1b[31m\nSet the NODE_ENV environment variable to 'production' or 'development' at .env file\n\x1b[0m`);
             reject("Environment variable not set in .env");
-         });
+        });
     }
 }
+
 
 // exportando essa função para fora, para que seja executada uma conexão com uma instrução sql
 module.exports = {
