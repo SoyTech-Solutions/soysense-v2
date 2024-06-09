@@ -42,6 +42,7 @@
                 </div>
             </div>
             <div class="row">
+                <input name="idAdmin" type="hidden" value="<%= userId %>">
                 <button type="submit">Cadastrar monitor</button>
             </div>
         </form>
@@ -72,6 +73,16 @@
                 </div>
             </div>
         </div>
+        <script>
+            setTimeout(()=>{
+               // Fechar o iframe
+                //    window.parent.document.getElementById('iframeId').style.display = 'none';
+                
+                // Atualizar a outra página
+                window.parent.location.reload();
+            }, 1500)
+        </script>
     <% } %> 
+
 </body>
 </html>

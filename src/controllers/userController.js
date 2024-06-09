@@ -33,31 +33,32 @@ async function getMonitorsRegistered(userId){
 }
 
 async function registerMonitor(req, res){
-    const usuario = req.body.usuario;
+    const username = req.body.usuario;
     const email = req.body.email;
-    const senha = req.body.senha;
-    const senhaConfirmacao = req.body.senhaConfirmacao;
+    const password = req.body.senha;
+    const passwordConfirmation = req.body.senhaConfirmacao;
+    const idAdmin = req.body.idAdmin;
 
-    if(usuario != '' && email != '' && senha != '' && senhaConfirmacao != ''){
+    if(username != '' && email != '' && password != '' && passwordConfirmation != '' && idAdmin){
         if(email.includes('@') && email.includes('.')){
-            if(senha == senhaConfirmacao){
+            if(password == passwordConfirmation){
                 req.session.hasBeenRegistered = true;
-                // userModel.registerMonitor(usuario, email, senha, );
-                return 
+                userModel.registerMonitor(idAdmin, username, email, password);
+                return true
             }else{
                 req.session.hasError = true;
                 req.session.errorMessage = 'As senhas não combinam! Tente novamente.'
-                return 
+                return false
             }
         }else{
             req.session.hasError = true;
             req.session.errorMessage = 'Email inválido! Tente outro.'
-            return 
+            return false
         }
     }else{
         req.session.hasError = true;
         req.session.errorMessage = 'Preencha todos os campos!'
-        return 
+        return false
     }
 
 }
