@@ -155,14 +155,8 @@
         </nav>
         <div class="footer-aside">
             <div class="logout-container">
-<<<<<<< HEAD
-                <a href="#">
-                    <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/f13939/logout-rounded.png"
-                        alt="logout-rounded" />
-=======
                 <a href="/logout">
                     <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/f13939/logout-rounded.png" alt="logout-rounded"/>
->>>>>>> ea15b1487c2f5d14322ddcc500929b736c2e7874
                     Sair
                 </a>
             </div>
@@ -356,10 +350,14 @@
                     datasets: [{
                         data: [10, 1],
                         backgroundColor: [
-                            '#003cff',
-                            '#ff0000',
+                            'rgb(235, 22, 22) ',
+                            '#008ae6',
                         ],
-                        hoverOffSet: 2
+                        hoverBackgroundColor: [ // Cor de fundo ao passar o mouse sobre o segmento
+                            'rgb(255, 45, 45)', // Cor ao passar o mouse sobre o segmento "Ativos"
+                            '#005b99'           // Cor ao passar o mouse sobre o segmento "Inativos"
+                        ],
+                        hoverOffSet: 1
                     }]
                 },
                 options: {
@@ -425,14 +423,18 @@
                     datasets: [{
                         data: [9, 11],
                         backgroundColor: [
-                            '#ff0000',
-                            '#003cff',// Cor azul mais forte para ativos
+                            'rgb(235, 22, 22) ',
+                            '#008ae6',
+                        ],
+                        hoverBackgroundColor: [ 
+                            'rgb(255, 45, 45)', 
+                            '#005b99'        
                         ],
                         hoverOffset: 2
                     }],
                     labels: [
-                        'Inativos', // Rótulo para os sensores inativos
-                        'Ativos',   // Rótulo para os sensores ativos
+                        'Inativos',
+                        'Ativos',   
                     ]
                 },
                 options: {
