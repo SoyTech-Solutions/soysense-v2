@@ -74,7 +74,7 @@ var qtdLm35 = new Chart(
             maintainAspectRatio: false,
             title: {
                 display: true,
-                text: 'Status dos Sensores'
+                text: 'Status dos Sensores (LM35)'
             }
         }
     }
@@ -146,7 +146,7 @@ var qtdDht11 = new Chart(
             maintainAspectRatio: false,
             title: {
                 display: true,
-                text: 'Status dos Sensores'
+                text: 'Status dos Sensores (DHT11)'
             }
         }
     }
