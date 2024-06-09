@@ -29,6 +29,18 @@ router.get('/', function(req, res) {
     }
 });
 
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log(err);
+            return res.redirect('/dashboard'); // Redirecione de volta para o dashboard em caso de erro
+        }
+        res.clearCookie('connect.sid'); // Limpar o cookie de sessão
+        res.redirect('/'); // Redirecionar para a tela de login
+    });
+});
+
+
 router.post('/', function(req,res){
     // A solicitação é do tipo POST, então você pode continuar com o processamento
     userController.login(req,res);
