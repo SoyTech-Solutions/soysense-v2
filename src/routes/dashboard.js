@@ -13,12 +13,10 @@ router.get('/', async function(req, res) {
         let fazendas;
          
         console.log(user.session_userAdmin);
-        if(user.session_userAdmin == 1){
-            fazendasResponse = await userController.getFazendas(user.session_userId);
-            fazendas = fazendasResponse.bd_fazendas;
-        }else{
 
-        }
+        fazendasResponse = await userController.getFazendas(user.session_userId);
+        fazendas = fazendasResponse.bd_fazendas;
+
         
  
         res.render('dashboard', {

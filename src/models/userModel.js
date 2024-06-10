@@ -74,32 +74,73 @@ async function getEmpresaByUsuario(userId){
     });;
 }
 
+async function isAdmin(userId){
+    console.log('User model accessed > isAdmin');
+
+    const sqlCommand = `
+        SELECT administrador FROM usuario 
+        WHERE idUsuario = ?;
+    `;
+
+    const resultQuery = await database.execute(sqlCommand, userId);
+
+
+    return resultQuery[0].administrador;
+}
 async function getFazendas(userId){
     console.log('User model accessed > function getFazendas');
 
+    const isUserAdmin = await isAdmin(userId);
+
     const empresaResponse = await getEmpresaByUsuario(userId);
 
+
     if(empresaResponse.success){
-        const sqlCommand = `
-            SELECT * FROM fazenda
-            WHERE fkEmpresa = ?;
         
-        `
+        if(isUserAdmin == 1){
+            const sqlCommand = `
+                SELECT * FROM fazenda
+                WHERE fkEmpresa = ?;
+             `
+             console.log('Running SQL command: \n'+ sqlCommand);
 
-        console.log('Running SQL command: \n'+ sqlCommand);
+             const resultQuery = await database.execute(sqlCommand, [empresaResponse.bd_idEmpresa]);
 
-        const resultQuery = await database.execute(sqlCommand, [empresaResponse.bd_idEmpresa]);
 
-        if (resultQuery && resultQuery.length > 0) {
-            return {
-                success: true,
-                bd_fazendas: resultQuery,
-            };
-        } else {
-            return {
-                success: false,
-                message: 'Credenciais de login inválidas.',
-            };
+             if (resultQuery && resultQuery.length > 0) {
+                return {
+                    success: true,
+                    bd_fazendas: resultQuery,
+                };
+            } else {
+                return {
+                    success: false,
+                    message: 'Credenciais de login inválidas.',
+                };
+            }
+        }else{
+            console.log('section')
+            const sqlCommand = `
+                SELECT fazenda.*
+                FROM usuario
+                JOIN fazenda ON usuario.fkFazenda = fazenda.idFazenda
+                WHERE usuario.idUsuario = ?;
+             `
+             console.log('Running SQL command: \n'+ sqlCommand);
+
+             const resultQuery = await database.execute(sqlCommand, userId);
+
+
+             if (resultQuery && resultQuery.length > 0) {
+                return {
+                    success: true,
+                    bd_fazendas: resultQuery,
+                };
+            } else {
+                return {
+                    success: false
+                };
+            }
         }
     }
 }
