@@ -1,18 +1,33 @@
 const express = require('express');
 const router = express.Router();
+const userController = require('../controllers/userController');
 
 // Rota raiz dentro do grupo /dashboard
-router.get('/', function(req, res) {
+router.get('/', async function(req, res) {
     if (req.session.authenticated) {
 
         // dados do usuário
         const user = req.session.user;
 
+        let fazendasResponse;
+        let fazendas;
+         
+        console.log(user.session_userAdmin);
+        if(user.session_userAdmin == 1){
+            fazendasResponse = await userController.getFazendas(user.session_userId);
+            fazendas = fazendasResponse.bd_fazendas;
+        }else{
+
+        }
         
+ 
         res.render('dashboard', {
             userId: user.session_userId,
             userName: user.session_userName,
             userEmail: user.session_userEmail,
+            userAdmin: user.session_userAdmin,
+            userCompany: user.session_userCompany,
+            fazendas: fazendas
         });
 
     }else{

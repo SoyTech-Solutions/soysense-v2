@@ -4,7 +4,10 @@ async function authLogin(email, senha) {
     console.log('User Model accessed > function autenticarLogin');
 
     var sqlCommand = `
-        SELECT idUsuario, usuario, email FROM usuario WHERE email = "${email}" AND senha = "${senha}";
+        SELECT idUsuario, usuario, email, administrador, nomeEmpresa FROM usuario 
+        INNER JOIN empresa 
+        ON idEmpresa = fkEmpresa 
+        WHERE email = "${email}" AND senha = "${senha}";
     `;
     console.log("Running SQL command: \n" + sqlCommand);
 
@@ -17,7 +20,9 @@ async function authLogin(email, senha) {
                  success: true, 
                  bd_userId: resultQuery[0].idUsuario,
                  bd_userName: resultQuery[0].usuario,
-                 bd_userEmail: resultQuery[0].email
+                 bd_userEmail: resultQuery[0].email,
+                 bd_userAdmin: resultQuery[0].administrador,
+                 bd_userCompany: resultQuery[0].nomeEmpresa
             };
         } else {
             // Se o resultado estiver vazio, significa que o login falhou
@@ -67,6 +72,36 @@ async function getEmpresaByUsuario(userId){
         console.error(error);
         return { success: false };
     });;
+}
+
+async function getFazendas(userId){
+    console.log('User model accessed > function getFazendas');
+
+    const empresaResponse = await getEmpresaByUsuario(userId);
+
+    if(empresaResponse.success){
+        const sqlCommand = `
+            SELECT * FROM fazenda
+            WHERE fkEmpresa = ?;
+        
+        `
+
+        console.log('Running SQL command: \n'+ sqlCommand);
+
+        const resultQuery = await database.execute(sqlCommand, [empresaResponse.bd_idEmpresa]);
+
+        if (resultQuery && resultQuery.length > 0) {
+            return {
+                success: true,
+                bd_fazendas: resultQuery,
+            };
+        } else {
+            return {
+                success: false,
+                message: 'Credenciais de login inválidas.',
+            };
+        }
+    }
 }
 async function getMonitorsRegistered(userId) {
     console.log('User Model accessed > function getMonitorRegistered');
@@ -128,5 +163,6 @@ module.exports = {
     authLogin,
     getEmpresaByUsuario,
     getMonitorsRegistered,
-    registerMonitor
+    registerMonitor,
+    getFazendas
 };

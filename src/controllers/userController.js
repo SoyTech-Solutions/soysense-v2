@@ -13,11 +13,12 @@ function login(req,res){
                 req.session.user = {
                     session_userId: resultadoQuery.bd_userId,
                     session_userName: resultadoQuery.bd_userName,
-                    session_userEmail: resultadoQuery.bd_userEmail
+                    session_userEmail: resultadoQuery.bd_userEmail,
+                    session_userAdmin: resultadoQuery.bd_userAdmin,
+                    session_userCompany: resultadoQuery.bd_userCompany
                 };
                 res.redirect('/dashboard')
             }else{
-                console.log('eu vim pra aqui')
                 req.session.authenticated = false
                 req.session.hasError = true;
                 req.session.errorMessage = 'Usuário ou senha incorreta. Tente novamente!'
@@ -26,6 +27,10 @@ function login(req,res){
 
         }
     );
+}
+
+async function getFazendas(userId){
+    return await userModel.getFazendas(userId);
 }
 
 async function getMonitorsRegistered(userId){
@@ -67,5 +72,6 @@ async function registerMonitor(req, res){
 module.exports = {
     login,
     getMonitorsRegistered,
-    registerMonitor
+    registerMonitor,
+    getFazendas
 }
