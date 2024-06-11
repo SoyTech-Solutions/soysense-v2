@@ -24,6 +24,7 @@ router.get('/', async (req, res)=> {
             userName: user.session_userName,
             userEmail: user.session_userEmail,
             userAdmin: user.session_userAdmin,
+            userCompany: user.session_userCompany,
             fazendas: fazendas,
             monitors: monitors
         });
