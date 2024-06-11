@@ -156,8 +156,8 @@ canvas {
     height: 8vh;
     flex-direction: column;
     display: flex;
-    background-color: #f3f3f3;
-    box-shadow: 0 0 0.5em rgb(115, 115, 115);
+    background-color: #ffffff;
+    /* box-shadow: 0 0 0.5em rgb(115, 115, 115); */
 }
 
 .descPizzaTemp {
@@ -167,8 +167,8 @@ canvas {
     height: 8vh;
     flex-direction: column;
     display: flex;
-    background-color: #f3f3f3;
-    box-shadow: 0 0 0.5em rgb(115, 115, 115);
+    background-color: #ffffff;
+    /* box-shadow: 0 0 0.5em rgb(115, 115, 115); */
 }
 
 .graficoPizzaUmid {
@@ -179,8 +179,8 @@ canvas {
     height: 35vh;
     font-family: 'montserrat', Arial, Helvetica, sans-serif;
     display: flex;
-    background-color: #f3f3f3;
-    box-shadow: 0 0 0.5em rgb(115, 115, 115);
+    background-color: #ffffff;
+    /* box-shadow: 0 0 0.5em rgb(115, 115, 115); */
 }
 
 .graficoPizzaTemp {
@@ -191,8 +191,8 @@ canvas {
     flex-direction: column;
     height: 35vh;
     display: flex;
-    background-color: #f3f3f3;
-    box-shadow: 0 0 0.5em rgb(115, 115, 115);
+    background-color: #ffffff;
+    /* box-shadow: 0 0 0.5em rgb(115, 115, 115); */
 }
 
 .tabelaUmid {
@@ -235,24 +235,22 @@ canvas {
 }
 
 .classificacaoLegenda {
-    height: 60%;
+    height: 20%;
     display: flex;
     flex-direction: row;
     width: 95%;
+    background: rgb(255,0,0);
+background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,249,27,1) 36%, rgba(110,240,0,1) 50%, rgba(255,249,27,1) 66%, rgba(255,27,27,1) 100%);
 }
 
 .descGreen,
 .descYellow,
 .descRed {
     width: 33.5%;
-    background-color: #00568f;
-    height: 100%;
-    border-radius: 10px;
-    border: 1px solid white;
 }
 
-.descGreen {
-    background-color: #00c400;
+/* .descGreen {
+    background: linear-gradient(45 deg #27a727, #ffc400);
 }
 
 .descYellow {
@@ -261,7 +259,7 @@ canvas {
 
 .descRed {
     background-color: #ff0000;
-}
+} */
 
 .blocoDesc{
     display: flex;
