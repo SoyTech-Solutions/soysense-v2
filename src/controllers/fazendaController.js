@@ -9,9 +9,16 @@ async function registerFazenda(req, res){
 
     if(localidade != '' && cepRural != '' && qtdHec != ''){
         if(Number(qtdHec) > 0){
-            req.session.hasBeenRegistered = true;
-            fazendaModel.registerFazenda(idAdmin, localidade, cepRural, qtdHec);
-            return true
+            if(cepRural.length == 8){
+                req.session.hasBeenRegistered = true;
+                fazendaModel.registerFazenda(idAdmin, localidade, cepRural, qtdHec);
+                return true
+            }else{
+                req.session.hasError = true;
+                req.session.errorMessage = 'Digite um CEP Rural válido'
+                return false
+            }
+           
         }else{
             req.session.hasError = true;
             req.session.errorMessage = 'É necessário que a quantidade de hectares sejam acima de zero!'

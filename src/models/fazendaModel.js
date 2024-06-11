@@ -1,26 +1,27 @@
 var database = require('../configs/database/connection');
+const userModel = require('../models/userModel');
 
-async function registerFazenda(idAdmin, username, email, password){
-    console.log('cheguei aqui')
-    // console.log('User Model accessed > function registerMonitor');
+async function registerFazenda(idAdmin, localidade, cepRural, qtdHec){
+    console.log('User Model accessed > function registerFazenda');
 
-    // const empresaResponse = await getEmpresaByUsuario(idAdmin);
+    const empresaResponse = await userModel.getEmpresaByUsuario(idAdmin);
 
-    // if(empresaResponse.success) {
-    //     const sqlCommand = `
-    //         INSERT INTO usuario VALUE (DEFAULT, ?, ?, ?, FALSE, ?, NULL)
-    //     `;
+    if(empresaResponse.success) {
+        const sqlCommand = `
+            INSERT INTO fazenda VALUE
+                (DEFAULT, ?,?,?,?);
+        `;
 
-    //     console.log('Running SQL command: \n' + sqlCommand);
+        console.log('Running SQL command: \n' + sqlCommand);
 
-    //     return await database.execute(sqlCommand, [username, email, password, empresaResponse.bd_idEmpresa]);
+        return await database.execute(sqlCommand, [localidade, cepRural, qtdHec, empresaResponse.bd_idEmpresa]);
 
-    // }else {
-    //     return {
-    //         success: false,
-    //         message: 'Error to get monitors registered',
-    //     };
-    // }
+    }else {
+        return {
+            success: false,
+            message: 'Error to get monitors registered',
+        };
+    }
 }
 
 module.exports = {
