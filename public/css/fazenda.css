@@ -49,6 +49,7 @@
 .grafico_down {
     display: flex;
     height: 70vh;
+    margin-top: 5px;
     width: 100%;
     flex-direction: row;
     justify-content: center;
@@ -83,7 +84,7 @@ canvas {
 .temp-container {
     align-items: flex-start;
     justify-content: flex-start;
-    width: 70%;
+    width: 100%;
     height: 98%;
     display: flex;
     flex-direction: column;
@@ -121,6 +122,7 @@ canvas {
 .rightGraficos {
     width: 100%;
     height: 100%;
+    margin-left: 7px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -267,6 +269,7 @@ background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,249,27,1) 36%, r
     justify-content: space-around;
     align-items: center;
     width: 98%;
+    padding-top: 40px;
     flex-direction: column;
     border-radius: 6px;
     height: 83%;
