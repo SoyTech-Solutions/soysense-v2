@@ -32,7 +32,11 @@ async function registerFazenda(req, res){
 
 }
 
+async function countFazendaHec(userId){
+    return await fazendaModel.countFazendaHec(userId);
+}
  
 module.exports = {
-    registerFazenda
+    registerFazenda,
+    countFazendaHec
 }
