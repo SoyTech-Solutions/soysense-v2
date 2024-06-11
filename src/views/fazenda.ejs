@@ -156,7 +156,8 @@
         <div class="footer-aside">
             <div class="logout-container">
                 <a href="/logout">
-                    <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/f13939/logout-rounded.png" alt="logout-rounded"/>
+                    <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/f13939/logout-rounded.png"
+                        alt="logout-rounded" />
                     Sair
                 </a>
             </div>
@@ -206,82 +207,97 @@
         </section>
 
         <section class="grafico_down">
-            <section class="temp-container">
-                <div class="left-temp">
-                    <h4>Temperatura Média (°C)</h4>
-                    <section>
-                        <canvas width="650" height="220" id="lm35Temperatura"></canvas>
-                    </section>
-                </div>
-                <div class="left-umid">
-                    <h4>Umidade Média (%)</h4>
-                    <section>
-                        <canvas width="650" height="220" id="dht11Umidade"></canvas>
-                    </section>
-                </div>
-            </section>
-
-            <section class="umid-container">
-                <div class="right-temp">
-                    <section class="info-right-temp">
-                        <div class="legendaGrafico"></div>
-                        <div class="header-right-temp">
-                            <canvas id="qtdLm35"></canvas>
+            <section class="content-graficos">
+                <section class="temp-container">
+                    <div class="left-temp">
+                        <h4>Temperatura Média (°C)</h4>
+                        <section>
+                            <canvas width="650" height="220" id="lm35Temperatura"></canvas>
+                        </section>
+                    </div>
+                    <div class="left-umid">
+                        <h4>Umidade Média (%)</h4>
+                        <section>
+                            <canvas width="650" height="220" id="dht11Umidade"></canvas>
+                        </section>
+                    </div>
+                </section>
+                <section class="rightGraficos">
+                    <div class="blocoUmid">
+                        <div class="blocoDesc">
+                            <div class="descPizzaUmid">
+                                <div class="tituloTabela">Parâmetros de umidade:</div>
+                                <div class="classificacaoLegenda">
+                                    <div class="descGreen"></div>
+                                    <div class="descYellow"></div>
+                                    <div class="descRed"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="tabelaPizza">
-
-                            <h4>Informações gerais</h4>
-                            <table class="table-temp">
-                                <tr>
-                                    <th>Sensores</th>
-                                    <th>Desempenho</th>
-                                    <th>Medição</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        11/1
-                                    </td>
-                                    <td>
-                                        91%
-                                    </td>
-                                    <td>
-                                        Temperatura (°C)
-                                    </td>
-                                </tr>
-                            </table>
+                        <div class="blocoGrafico">
+                            <div class="graficoPizzaUmid">
+                                <div class="statusSensores">
+                                    <h4>Status dos sensores</h4>
+                                </div>
+                                <canvas></canvas>
+                            </div>
+                            <div class="tabelaUmid">
+                                <div>
+                                    <h4>Informações gerais</h4>
+                                </div>
+                                <table>
+                                    <tr>
+                                      <th>Sensores</th>
+                                      <th>Desempenho</th>
+                                      <th>Medição</th>
+                                    </tr>
+                                    <tr>
+                                      <td>21/9</td>
+                                      <td>57%</td>
+                                      <td>Umidade</td>
+                                    </tr>
+                                  </table>
+                            </div>
                         </div>
-                    </section>
-
-                </div>
-                <div class="right-umid">
-                    <section class="info-right-umid">
-                        <div class="legendaGrafico"></div>
-                        <div class="header-right-umid">
-                            <canvas id="qtdDht11"></canvas>
+                    </div>
+                    <div class="blocoTemp">
+                        <div class="blocoDesc">
+                            <div class="descPizzaTemp">
+                                <div class="tituloTabela">Parâmetros de temperatura:</div>
+                                <div class="classificacaoLegenda">
+                                    <div class="descGreen"></div>
+                                    <div class="descYellow"></div>
+                                    <div class="descRed"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="tabelaPizza">
-                            <h4>Informações gerais</h4>
-                            <table class="table-umid">
-                                <tr>
-                                    <th>Sensores</th>
-                                    <th>Desempenho</th>
-                                    <th>Medição</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        21/9
-                                    </td>
-                                    <td>
-                                        57%
-                                    </td>
-                                    <td>
-                                        Umidade
-                                    </td>
-                                </tr>
-                            </table>
+                        <div class="blocoGrafico">
+                            <div class="graficoPizzaTemp">
+                                <div class="statusSensores">
+                                    <h4>Status dos sensores</h4>
+                                </div>
+                                <canvas></canvas>
+                            </div>
+                            <div class="tabelaTemp">
+                                <div>
+                                    <h4>Informações gerais</h4>
+                                </div>
+                                <table>
+                                    <tr>
+                                      <th>Sensores</th>
+                                      <th>Desempenho</th>
+                                      <th>Medição</th>
+                                    </tr>
+                                    <tr>
+                                      <td>11/1</td>
+                                      <td>91%</td>
+                                      <td>Temperatura (C°)</td>
+                                    </tr>
+                                  </table>
+                            </div>
                         </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
             </section>
         </section>
     </main>
@@ -359,14 +375,6 @@
                         ],
                         hoverOffSet: 1
                     }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    title: {
-                        display: true,
-                        text: 'Status dos Sensores (LM35)'
-                    }
                 }
             }
         );
@@ -426,24 +434,16 @@
                             'rgb(235, 22, 22) ',
                             '#008ae6',
                         ],
-                        hoverBackgroundColor: [ 
-                            'rgb(255, 45, 45)', 
-                            '#005b99'        
+                        hoverBackgroundColor: [
+                            'rgb(255, 45, 45)',
+                            '#005b99'
                         ],
                         hoverOffset: 2
                     }],
                     labels: [
                         'Inativos',
-                        'Ativos',   
+                        'Ativos',
                     ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    title: {
-                        display: true,
-                        text: 'Status dos Sensores (DHT11)'
-                    }
                 }
             }
         );
