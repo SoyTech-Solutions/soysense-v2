@@ -1,41 +1,32 @@
 const express = require('express');
 const router = express.Router();
+const userController = require('../controllers/userController');
 
-// Rota raiz dentro do grupo /dashboard
-router.get('/', function(req, res) {
+router.get('/:fazendaId', async function(req, res){
     if (req.session.authenticated) {
+
+        const fazendaId = req.params.fazendaId;
 
         // dados do usuário
         const user = req.session.user;
 
-        
-        res.render('dashboard', {
-            userId: user.session_userId,
-            userName: user.session_userName,
-            userEmail: user.session_userEmail,
-            userAdmin: user.session_userAdmin
-        });
+        let fazendasResponse;
+        let fazendas;
 
-    }else{
-        req.session.hasError = true;
-        req.session.errorMessage = 'Faça login antes de acessar a dashboard!'
-        res.redirect('/');
-    }
-});
+        fazendasResponse = await userController.getFazendas(user.session_userId);
+        fazendas = fazendasResponse.bd_fazendas;
 
-router.get('/:fazendaId', function(req, res){
-    if (req.session.authenticated) {
 
-        // dados do usuário
-        const user = req.session.user;
-        const fazendaId = req.params.fazendaId
-        
         res.render('fazenda', {
             userId: user.session_userId,
             userName: user.session_userName,
             userEmail: user.session_userEmail,
-            fazendaId: fazendaId
+            userAdmin: user.session_userAdmin,
+            userCompany: user.session_userCompany,
+            fazendaId: fazendaId,
+            fazendas: fazendas
         });
+
 
     }else{
         req.session.hasError = true;

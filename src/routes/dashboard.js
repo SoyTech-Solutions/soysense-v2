@@ -11,8 +11,6 @@ router.get('/', async function(req, res) {
 
         let fazendasResponse;
         let fazendas;
-         
-        console.log(user.session_userAdmin);
 
         fazendasResponse = await userController.getFazendas(user.session_userId);
         fazendas = fazendasResponse.bd_fazendas;
