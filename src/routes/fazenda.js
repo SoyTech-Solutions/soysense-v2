@@ -2,6 +2,78 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
+router.get('/', async function(req, res){
+    if (req.session.authenticated) {
+
+        const fazendaId = req.params.fazendaId;
+
+        // dados do usuário
+        const user = req.session.user;
+
+        let fazendasResponse;
+        let fazendas;
+
+        fazendasResponse = await userController.getFazendas(user.session_userId);
+        fazendas = fazendasResponse.bd_fazendas;
+
+
+        res.render('fazendas', {
+            userId: user.session_userId,
+            userName: user.session_userName,
+            userEmail: user.session_userEmail,
+            userAdmin: user.session_userAdmin,
+            userCompany: user.session_userCompany,
+            fazendaId: fazendaId,
+            fazendas: fazendas
+        });
+
+
+    }else{
+        req.session.hasError = true;
+        req.session.errorMessage = 'Faça login antes de acessar as fazendas!'
+        res.redirect('/');
+    }
+})
+
+router.get('/iframe', async function(req, res){
+    if (req.session.authenticated) {
+
+        let hasError = false;
+        let errorMessage = '';
+
+        let hasBeenRegistered = false;
+
+        if(req.session.hasError){
+            hasError = true;
+            errorMessage = req.session.errorMessage;
+
+            delete req.session.hasError;
+            delete req.session.errorMessage;
+        }
+
+        if(req.session.hasBeenRegistered){
+            hasBeenRegistered = true;
+            delete req.session.hasBeenRegistered
+        }
+        
+        // dados do usuário
+        const user = req.session.user;
+        res.render('fazendasIframe', {
+            userId: user.session_userId,
+            hasError: hasError,
+            errorMessage: errorMessage,
+            hasBeenRegistered: hasBeenRegistered
+        });
+
+    }else{
+        req.session.hasError = true;
+        req.session.errorMessage = 'Faça login antes para registrar monitores!'
+        res.redirect('/');
+    }
+
+})
+
+
 router.get('/:fazendaId', async function(req, res){
     if (req.session.authenticated) {
 
@@ -30,7 +102,7 @@ router.get('/:fazendaId', async function(req, res){
 
     }else{
         req.session.hasError = true;
-        req.session.errorMessage = 'Faça login antes de acessar a dashboard!'
+        req.session.errorMessage = 'Faça login antes de acessar as fazendas!'
         res.redirect('/');
     }
 })
