@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
+const fazendaController = require('../controllers/fazendaController');
 
 router.get('/', async function(req, res){
     if (req.session.authenticated) {
@@ -73,6 +74,17 @@ router.get('/iframe', async function(req, res){
 
 })
 
+router.post('/registrar', async (req,res)=>{
+    if (req.session.authenticated) {
+        await fazendaController.registerFazenda(req,res);
+        res.redirect('/fazenda/iframe');
+
+    }else{
+        req.session.hasError = true;
+        req.session.errorMessage = 'Faça login antes para registrar fazendas!'
+        res.redirect('/');
+    }
+})
 
 router.get('/:fazendaId', async function(req, res){
     if (req.session.authenticated) {
