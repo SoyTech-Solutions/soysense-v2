@@ -249,17 +249,6 @@ background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,249,27,1) 36%, r
     width: 33.5%;
 }
 
-/* .descGreen {
-    background: linear-gradient(45 deg #27a727, #ffc400);
-}
-
-.descYellow {
-    background-color: #ffc400;
-}
-
-.descRed {
-    background-color: #ff0000;
-} */
 
 .blocoDesc{
     display: flex;
@@ -294,7 +283,7 @@ th{
 
 td{
     height: 80%;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 table{
@@ -302,6 +291,16 @@ table{
     height: 80%;
     border-collapse: collapse;
     border: 1px solid rgba(0, 0, 0, 0.267);
+}
+
+.parametroLegenda{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    width: 95%;
+    font-family: 'Montserrat';
 }
 
 .summary-main.alerta-bloco {
