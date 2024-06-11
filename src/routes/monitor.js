@@ -11,11 +11,20 @@ router.get('/', async (req, res)=> {
 
         const monitorsResponse = await userController.getMonitorsRegistered(user.session_userId);
         const monitors = monitorsResponse.bd_monitors;
+
+        
+        let fazendasResponse;
+        let fazendas;
+
+        fazendasResponse = await userController.getFazendas(user.session_userId);
+        fazendas = fazendasResponse.bd_fazendas;
         
         res.render('monitor', {
             userId: user.session_userId,
             userName: user.session_userName,
             userEmail: user.session_userEmail,
+            userAdmin: user.session_userAdmin,
+            fazendas: fazendas,
             monitors: monitors
         });
 

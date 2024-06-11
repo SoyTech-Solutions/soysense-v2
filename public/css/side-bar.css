@@ -96,7 +96,7 @@ body{
     align-items: center;
     gap: 10px;
     overflow-y: auto;
-    height: 350px;
+    height: 400px;
     margin-top: 10px;
 }
 .accordion-item {

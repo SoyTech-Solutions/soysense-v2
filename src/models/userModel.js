@@ -4,7 +4,10 @@ async function authLogin(email, senha) {
     console.log('User Model accessed > function autenticarLogin');
 
     var sqlCommand = `
-        SELECT idUsuario, usuario, email FROM usuario WHERE email = "${email}" AND senha = "${senha}";
+        SELECT idUsuario, usuario, email, administrador, nomeEmpresa FROM usuario 
+        INNER JOIN empresa 
+        ON idEmpresa = fkEmpresa 
+        WHERE email = "${email}" AND senha = "${senha}";
     `;
     console.log("Running SQL command: \n" + sqlCommand);
 
@@ -17,7 +20,9 @@ async function authLogin(email, senha) {
                  success: true, 
                  bd_userId: resultQuery[0].idUsuario,
                  bd_userName: resultQuery[0].usuario,
-                 bd_userEmail: resultQuery[0].email
+                 bd_userEmail: resultQuery[0].email,
+                 bd_userAdmin: resultQuery[0].administrador,
+                 bd_userCompany: resultQuery[0].nomeEmpresa
             };
         } else {
             // Se o resultado estiver vazio, significa que o login falhou
@@ -67,6 +72,77 @@ async function getEmpresaByUsuario(userId){
         console.error(error);
         return { success: false };
     });;
+}
+
+async function isAdmin(userId){
+    console.log('User model accessed > isAdmin');
+
+    const sqlCommand = `
+        SELECT administrador FROM usuario 
+        WHERE idUsuario = ?;
+    `;
+
+    const resultQuery = await database.execute(sqlCommand, userId);
+
+
+    return resultQuery[0].administrador;
+}
+async function getFazendas(userId){
+    console.log('User model accessed > function getFazendas');
+
+    const isUserAdmin = await isAdmin(userId);
+
+    const empresaResponse = await getEmpresaByUsuario(userId);
+
+
+    if(empresaResponse.success){
+        
+        if(isUserAdmin == 1){
+            const sqlCommand = `
+                SELECT * FROM fazenda
+                WHERE fkEmpresa = ?;
+             `
+             console.log('Running SQL command: \n'+ sqlCommand);
+
+             const resultQuery = await database.execute(sqlCommand, [empresaResponse.bd_idEmpresa]);
+
+
+             if (resultQuery && resultQuery.length > 0) {
+                return {
+                    success: true,
+                    bd_fazendas: resultQuery,
+                };
+            } else {
+                return {
+                    success: false,
+                    message: 'Credenciais de login inválidas.',
+                };
+            }
+        }else{
+            console.log('section')
+            const sqlCommand = `
+                SELECT fazenda.*
+                FROM usuario
+                JOIN fazenda ON usuario.fkFazenda = fazenda.idFazenda
+                WHERE usuario.idUsuario = ?;
+             `
+             console.log('Running SQL command: \n'+ sqlCommand);
+
+             const resultQuery = await database.execute(sqlCommand, userId);
+
+
+             if (resultQuery && resultQuery.length > 0) {
+                return {
+                    success: true,
+                    bd_fazendas: resultQuery,
+                };
+            } else {
+                return {
+                    success: false
+                };
+            }
+        }
+    }
 }
 async function getMonitorsRegistered(userId) {
     console.log('User Model accessed > function getMonitorRegistered');
@@ -128,5 +204,6 @@ module.exports = {
     authLogin,
     getEmpresaByUsuario,
     getMonitorsRegistered,
-    registerMonitor
+    registerMonitor,
+    getFazendas
 };
