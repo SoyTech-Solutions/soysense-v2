@@ -13,7 +13,8 @@
 
     <!-- estático js script -->
     <script src="/js/side-bar.js" defer></script>
-    <script src="/js/graficos-simulativo-fazenda.js" defer></script>
+    <script src="/js/open-addmonitor.js" defer></script>
+    <!-- <script src="/js/graficos-simulativo-fazenda.js" defer></script> -->
 
 
 
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="/css/side-bar.css">
     <link rel="stylesheet" href="/css/fazenda.css">
     <link rel="stylesheet" href="/css/header-main.css">
+    <link rel="stylesheet" href="/css/adicionar-monitor.css">
 </head>
 
 <body>
@@ -185,6 +187,7 @@
             <div class="inner-header">
                 <h1>Complexo</h1>
                 <a href="#">/fazenda/<%= fazendaId %></a>
+                <button id="openModalAdicionarMonitor" class="button-adicionar-monitor">Adicionar Monitor</button>
             </div>
         </header>
         <section class="summary-container">
@@ -328,6 +331,28 @@
                 </section>
             </section>
         </section>
+        <div id="modalAdicionarMonitor" class="modal">
+            <div class="modal-content">
+                <div class="header-modal">
+                    <span class="close" id="closeAdicionarMonitor">&times;</span>
+                </div>
+                <div class="cadastro-box">
+                    <h1>Adicione um monitor à essa fazenda</h1>
+                    <form id="form_cadastrar_monitor" action="/fazenda/registrar" method="POST">
+                        <div class="row">
+                            <div class="col select-monitor">
+                                <select style="height: 40px;">
+                                    <option value="#">Selecione um monitor...</option>
+                                </select>
+                            </div>
+                        <div class="row">
+                            <input name="idAdmin" type="hidden" value="">
+                            <button type="submit">Adicionar Monitor</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
     <script>
         var umidCard = document.querySelector('#umid-card');
