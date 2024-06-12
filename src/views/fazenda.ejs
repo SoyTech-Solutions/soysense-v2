@@ -187,7 +187,9 @@
             <div class="inner-header">
                 <h1>Complexo</h1>
                 <a href="#">/fazenda/<%= fazendaId %></a>
-                <button id="openModalAdicionarMonitor" class="button-adicionar-monitor">Adicionar Monitor</button>
+                <% if(userAdmin == 1){ %>
+                    <button id="openModalAdicionarMonitor" class="button-adicionar-monitor">Adicionar Monitor</button>
+                <% }%>
             </div>
         </header>
         <section class="summary-container">
