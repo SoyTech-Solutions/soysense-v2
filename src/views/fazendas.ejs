@@ -127,7 +127,7 @@
                     </div>
                     <ul class="accordion-submenu">
                         <li class="accordion-subitem">
-                            <a href="/profile"><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Perfil</a>
+                            <a href=""><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Perfil</a>
                         </li>
                         <li class="accordion-subitem">
                             <a href=""><img width="10"  style="transform: rotate(270deg);" height="10" src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png" alt="left-down2"/>&nbsp;Personalizar</a>
@@ -153,7 +153,7 @@
         <header class="header-dashboard">
             <div class="inner-header">
                 <h1>Gerenciar</h1>
-                <a href="/monitor">/monitor</a>
+                <a href="/fazenda">/fazenda</a>
             </div>
         </header>
         <section class="search-container">
@@ -167,26 +167,18 @@
                 <table>
                     <tr>
                         <th>Id</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Cargo</th>
+                        <th>Localidade</th>
+                        <th>Cep Rural</th>
+                        <th>Hectares (unid.)</th>
                         <th>Ações</th>
                     </tr>
-                    <% let countMonitors = 0%>
-                    <% monitors.forEach((monitor)=>{ %>
+                    <% let countFazendas = 0%>
+                    <% fazendas.forEach((fazenda)=>{ %>
                         <tr>
-                            <td><%= monitor.idUsuario %></td>
-                            <td><%= monitor.usuario %> 
-                                <% if(monitor.idUsuario == userId){ %>
-                                    <span class="you">(você)</span>
-                                <% }%>
-                            </td>
-                            <td><%= monitor.email %></td>
-                            <% if(monitor.administrador == 1){ %>
-                                <td>Admin</td>
-                            <% }else{ %>
-                                <td>Monitor</td>
-                            <% } %>  
+                            <td><%= fazenda.idFazenda %></td>
+                            <td><%= fazenda.localidade %></td>
+                            <td><%= fazenda.cepRural %></td> 
+                            <td><%= fazenda.qtdHec %></td>
                             <td>
                                 <button class="btn-edi">
                                     <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/edit--v1.png" alt="edit--v1"/>
@@ -196,14 +188,14 @@
                                 </button>
                             </td>
                         </tr>
-                        <% countMonitors++ %>
+                        <% countFazendas++ %>
                     <% }) %>
                     
 
                 </table>
             </div>
             <div class="footer-table-container">
-                <p>Gestores registrados: <span><%= countMonitors %></span></p>
+                <p>Gestores registrados: <span><%= countFazendas %></span></p>
                 <button id="openModalAdicionarMonitor">Adicionar +</button>
             </div>
         </section>
@@ -212,7 +204,7 @@
                 <div class="header-modal">
                     <span class="close" id="closeAdicionarMonitor">&times;</span>
                 </div>
-                    <iframe src="/monitor/iframe" width="598" height="500"  frameborder="0"></iframe>
+                    <iframe src="/fazenda/iframe" width="598" height="500"  frameborder="0"></iframe>
             </div>
         </div>
     </main>
