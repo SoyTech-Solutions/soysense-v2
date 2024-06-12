@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/css/side-bar.css">
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="/css/header-main.css">
+    <link rel="stylesheet" href="/css/perfil.css">
 </head>
 
 <body>
@@ -147,7 +148,7 @@
                     <ul class="accordion-submenu">
                         
                         <li class="accordion-subitem">
-                            <a href="/profile"><img width="10" style="transform: rotate(270deg);" height="10"
+                            <a href="/src/views/perfil.ejs"><img width="10" style="transform: rotate(270deg);" height="10"
                                     src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
                                     alt="left-down2" />&nbsp;Perfil</a>
                         </li>
@@ -178,173 +179,45 @@
     </aside>
     <main class="main-dashboard">
 
-        <header class="header-dashboard">
-            <div class="inner-header">
-                <h1>Dashboard</h1>
-                <a href="#">/dashboard</a>
-            </div>
-        </header>
-        <section class="summary-container">
-            <div class="summary-card">
-                <div class="summary-main" id="temp-card">
-                    <span>Alerta: Temperatura</span>
-                    <h1 id="critico-titulo-temp"></h1>
-                </div>
-                <div class="summary-footer ">
-                    <h1>Crítico: Fazenda X</h1>
-                </div>
-            </div>
-            <!-- id="desempenho-titulo" -->
-            <div class="summary-card">
-                <div class="summary-main">
-                    <span>Alerta: Umidade</span>
-                    <h1>10%</h1> 
-                </div>
-                <div class="summary-footer ">
-                    <h1>Crítico: Fazenda Y</h1>
-                </div>
-            </div>
-            <div class="summary-card">
-                <div class="summary-main" id="umid-card">
-                    <span>2 fazendas</span>
-                    <h1>6 Lotes</h1>
-                </div>
-                <div class="summary-footer">
-                    <h1>Monitorando</h1>
-                </div>
-            </div>
-
-            <div class="summary-card">
-                <div class="summary-main">
-                    <span>Sensor: DHT11</span>
-                    <h1>100 Unidades</h1>
-                </div>
-                <div class="summary-footer ">
-                    <h1>Umidade</h1>
-                </div>
-            </div>
-
-            <div class="summary-card">
-                <div class="summary-main">
-                    <span>Sensor: LM35</span>
-                    <h1>100 Unidades</h1>
-                </div>
-                <div class="summary-footer ">
-                    <h1>Temperatura</h1>
-                </div>
-            </div>
-        </section>
-
-
-        <div class="DesempenhoRegistroGraficos">
-            <section class="registro-container">
-                <div class="registro-grafico">
-                    <h4>Registro de Alertas</h4>
-                    <section>
-                        <canvas id="RegistroA"></canvas>
-                    </section>
+        
+        <section>
+                <div class="container-perfil">
+                    <div class="content-perfil">
+                        <div class="imgPerfil">
+                            <div class="box-perfil">
+                                <div class="avatar_wrapper">
+                                    <img id="avatar" class="avatar" src="" alt="Sua imagem">
+                                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                                    <button class="uploadButton" id="uploadButton" style="display: none;">Adicione sua imagem</button>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="box-perfil">
+                            Email:
+                            <input id="email" disabled>
+                        </div>
+                        <div class="box-perfil">
+                            Senha:
+                            <input id="senha" type="password" disabled>
+                        </div>
+                        <div class="box-perfil">
+                            Confirmar Senha:
+                            <input id="confirmacaoSenha" type="password" disabled>
+                        </div>
+                        <div class="box-perfil" id="passwordValidation" style="display: none;">
+                           
+                        </div>
+                        <div class="box-perfil">
+                            <button class="bntPerfil" id="editButton">Editar Perfil</button>
+                            <button class="bntPerfil" id="saveButton" style="display: none;">Salvar Alterações</button>
+                            <button class="bntPerfil" id="cancelButton" style="display: none;">Cancelar Alterações</button>
+                        </div>
+                    </div>
                 </div>
             </section>
-
-            <section class="problemas-container">
-                <div class="problemas-grafico">
-                    <h4>Fazendas com problemas</h4>
-                    <section>
-                        <canvas id="FazendasProblemas"></canvas>
-                    </section>
-                </div>
-            </section>
-        </div>
-
-        </div>
-    </main>
-    <script>
-        /* Fazendas com problemas */
-
-        var FazendasProblemas = document.getElementById('FazendasProblemas').getContext('2d');
-        var Problemas =
-            new Chart(FazendasProblemas,        
-                        {
-                            type: 'pie',
-                            data: {
-                                labels: ['Fazenda x', 'Fazenda y'],
-                                datasets: [{
-                                    label: 'Quantidade de problemas',
-                                    data: [11, 7],
-                
-                                    backgroundColor: [
-                                    '#69E056',
-                                    '#FFF857',
-                                    ],
-                
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        });
-
-
-        /* Registros d Alerts*/
-
-        var RegistroA = document.getElementById('RegistroA').getContext('2d');
-        var valor = 
-            new Chart(RegistroA,     
-                {
-
-                    type: 'line',
-                    data: {
-                        labels: [
-                            'Janeiro',
-                            'Fevereiro',
-                            'Março',
-                            'Abril',
-                            'Maio',
-                            'Junho',
-                            'Julho',
-                            'Agosto',
-                            'Setembro',
-                            'Outubro',
-                            'Novembro',
-                            'Dezembro'
-                        ],
-                        datasets: [
-                            {
-                                label: 'Fazenda X',
-                                data: [1,5,0,0,9,3,2,7,11,3,2,8],
-                                borderWidth: 3,
-                                pointRadius: 0,
-                                backgroundColor: '#69E056',
-                                borderColor: '#69E056'
-                            },
-                            {
-                                label: 'Fazenda Y',
-                                data: [0,3,4,3,6,4,8,2,1,7,6,4],
-                                borderWidth: 3,
-                                pointRadius: 0,
-                                backgroundColor: '#FFF857',
-                                borderColor: '#FFF857'
-                                
-                            }
-                        ]
-
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-
-                
-    </script>
+        
+            <script src="/js/perfil.js"></script>
 </body>
 
 
