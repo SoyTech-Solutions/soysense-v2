@@ -69,10 +69,14 @@ async function registerMonitor(req, res){
 
 }
 
+async function addMonitorToFazenda(req, res){
+    console.log(req.body)
+}
  
 module.exports = {
     login,
     getMonitorsRegistered,
     registerMonitor,
-    getFazendas
+    getFazendas,
+    addMonitorToFazenda
 }

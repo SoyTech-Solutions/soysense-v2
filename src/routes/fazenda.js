@@ -75,7 +75,7 @@ router.get('/iframe', async function(req, res){
 
 })
 
-router.post('/registrar', async (req,res)=>{
+router.post('/register', async (req,res)=>{
     if (req.session.authenticated) {
         await fazendaController.registerFazenda(req,res);
         res.redirect('/fazenda/iframe');
@@ -126,6 +126,17 @@ router.get('/:fazendaId', async function(req, res){
     }
 })
 
+router.post('/addMonitor', async (req,res)=>{
+    if (req.session.authenticated) {
+        await userController.addMonitorToFazenda(req,res);
+        res.redirect('/monitor')
+
+    }else{
+        req.session.hasError = true;
+        req.session.errorMessage = 'Faça login antes para registrar monitores!'
+        res.redirect('/');
+    }
+})
 
 // testando um ngc n mexe please
 module.exports = router;

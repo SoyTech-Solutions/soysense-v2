@@ -152,7 +152,7 @@ async function getMonitorsRegistered(userId) {
         
     if (empresaResponse.success) {
         const sqlCommand = `
-            SELECT idUsuario, usuario, email, administrador
+            SELECT idUsuario, usuario, email, administrador, fkFazenda
             FROM usuario 
             WHERE fkEmpresa = ? ;
         `;

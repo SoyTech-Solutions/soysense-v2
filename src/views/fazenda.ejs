@@ -349,14 +349,14 @@
                 </div>
                 <div class="cadastro-box">
                     <h1>Adicione um monitor à essa fazenda</h1>
-                    <form id="form_cadastrar_monitor" action="/fazenda/registrar" method="POST">
+                    <form id="form_cadastrar_monitor" action="/fazenda/addMonitor" method="POST">
                         <div class="row">
                             <div class="col select-monitor">
                                 <select style="height: 40px;">
                                     <option value="#">Selecione um monitor...</option>
                                     <% monitors.forEach((monitor)=>{ %>
-                                        <% if( monitor.fkFazenda == 'null'){ %>
-                                            <option value="#"><%= monitor.usuario %></option>
+                                        <% if( monitor.fkFazenda == null && monitor.administrador != 1){ %>
+                                            <option value="<%= monitor.idUsuario %>"><%= monitor.usuario %></option>
                                         <% } %>
                                     <% }) %>
                                 </select>
@@ -365,6 +365,7 @@
                         <div class="row">
                             <div class="col">
                                 <input name="idAdmin" type="hidden" value="<%= userId %>">
+                                <input name="idFazenda" type="hidden" value="<%= fazendaId %>">
                                 <button type="submit">Adicionar Monitor</button>
                             </div>
                         </div>

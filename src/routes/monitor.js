@@ -11,7 +11,6 @@ router.get('/', async (req, res)=> {
 
         const monitorsResponse = await userController.getMonitorsRegistered(user.session_userId);
         const monitors = monitorsResponse.bd_monitors;
-
         
         let fazendasResponse;
         let fazendas;
@@ -74,7 +73,7 @@ router.get('/iframe', (req, res) =>{
     }
 });
 
-router.post('/registrar', async (req,res)=>{
+router.post('/register', async (req,res)=>{
     if (req.session.authenticated) {
         await userController.registerMonitor(req,res);
         res.redirect('/monitor/iframe')
@@ -85,6 +84,7 @@ router.post('/registrar', async (req,res)=>{
         res.redirect('/');
     }
 })
+
 
 
 module.exports = router;

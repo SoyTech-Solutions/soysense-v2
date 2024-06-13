@@ -227,8 +227,8 @@
 
             <div class="summary-card">
                 <div class="summary-main">
-                    <span>Sensor: DHT11</span>
-                    <h1>100 Unidades</h1>
+                    <span>Sensor: <%= countSensors[0].tipo.toUpperCase() %></span>
+                    <h1> <%= countSensors[0].quantidade %> Unidades</h1>
                 </div>
                 <div class="summary-footer ">
                     <h1>Umidade</h1>
@@ -237,8 +237,8 @@
 
             <div class="summary-card">
                 <div class="summary-main">
-                    <span>Sensor: LM35</span>
-                    <h1>100 Unidades</h1>
+                    <span>Sensor:  <%= countSensors[1].tipo.toUpperCase() %></span>
+                    <h1><%= countSensors[1].quantidade %> Unidades</h1>
                 </div>
                 <div class="summary-footer ">
                     <h1>Temperatura</h1>
