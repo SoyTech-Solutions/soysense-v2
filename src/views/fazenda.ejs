@@ -100,15 +100,24 @@
                                                     src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
                                                     alt="left-down2" />&nbsp;<%= fazenda.localidade %></a>
                                         </li>
-                                        <% }) %>
-                                            <% }else { %>
-                                                <li class="accordion-subitem">
-                                                    <a href="/fazenda/1"><img width="10"
-                                                            style="transform: rotate(270deg);" height="10"
-                                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                                            alt="left-down2" />&nbsp;<%= fazendas[0].localidade %></a>
-                                                </li>
-                                                <% } %>
+                                    <% }) %>
+                                <% }else { %>
+                                    <% if( userFazenda == null) { %>
+                                        <li class="accordion-subitem">
+                                            <a href="/naoencontrado"><img width="10"
+                                                    style="transform: rotate(270deg);" height="10"
+                                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                                    alt="left-down2" />Nenhuma fazenda!</a>
+                                        </li>
+                                    <% }else{ %>
+                                        <li class="accordion-subitem">
+                                            <a href="/fazenda/1"><img width="10"
+                                                    style="transform: rotate(270deg);" height="10"
+                                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                                    alt="left-down2" />&nbsp;<%= fazendas[0].localidade %></a>
+                                        </li>
+                                    <% } %>
+                                <% } %>
                             </ul>
                         </li>
                         <li class="accordion-item">
@@ -345,14 +354,17 @@
                             <div class="col select-monitor">
                                 <select style="height: 40px;">
                                     <option value="#">Selecione um monitor...</option>
-                                    <option value="#">Selecione um monitor...</option>
-                                    <option value="#">Selecione um monitor...</option>
+                                    <% monitors.forEach((monitor)=>{ %>
+                                        <% if( monitor.fkFazenda == 'null'){ %>
+                                            <option value="#"><%= monitor.usuario %></option>
+                                        <% } %>
+                                    <% }) %>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <input name="idAdmin" type="hidden" value="">
+                                <input name="idAdmin" type="hidden" value="<%= userId %>">
                                 <button type="submit">Adicionar Monitor</button>
                             </div>
                         </div>

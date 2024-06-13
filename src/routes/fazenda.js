@@ -24,6 +24,7 @@ router.get('/', async function(req, res){
             userEmail: user.session_userEmail,
             userAdmin: user.session_userAdmin,
             userCompany: user.session_userCompany,
+            userFazenda: user.session_userFazenda,
             fazendaId: fazendaId,
             fazendas: fazendas
         });
@@ -100,6 +101,10 @@ router.get('/:fazendaId', async function(req, res){
         fazendasResponse = await userController.getFazendas(user.session_userId);
         fazendas = fazendasResponse.bd_fazendas;
 
+        const monitorsResponse = await userController.getMonitorsRegistered(user.session_userId);
+        const monitors = monitorsResponse.bd_monitors;
+
+
 
         res.render('fazenda', {
             userId: user.session_userId,
@@ -107,8 +112,10 @@ router.get('/:fazendaId', async function(req, res){
             userEmail: user.session_userEmail,
             userAdmin: user.session_userAdmin,
             userCompany: user.session_userCompany,
+            userFazenda: user.session_userFazenda,
             fazendaId: fazendaId,
-            fazendas: fazendas
+            fazendas: fazendas,
+            monitors: monitors
         });
 
 

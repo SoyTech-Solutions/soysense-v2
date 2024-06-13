@@ -23,6 +23,7 @@ router.get('/', async function(req, res) {
             userEmail: user.session_userEmail,
             userAdmin: user.session_userAdmin,
             userCompany: user.session_userCompany,
+            userFazenda: user.session_userFazenda,
             fazendas: fazendas
         });
 

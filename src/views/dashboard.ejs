@@ -88,20 +88,31 @@
                         <span>Fazendas</span>
                     </div>
                     <ul class="accordion-submenu ">
-                        <% if(userAdmin == 1) { %>
+                        <% if(userAdmin==1) { %>
                             <% fazendas.forEach((fazenda)=>{ %>
                                 <li class="accordion-subitem">
-                                    <a href="/fazenda/<%= fazenda.idFazenda %>"><img width="10" style="transform: rotate(270deg);" height="10"
+                                    <a href="/fazenda/<%= fazenda.idFazenda %>"><img width="10"
+                                            style="transform: rotate(270deg);" height="10"
                                             src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
                                             alt="left-down2" />&nbsp;<%= fazenda.localidade %></a>
                                 </li>
                             <% }) %>
                         <% }else { %>
-                            <li class="accordion-subitem">
-                                <a href="/fazenda/1"><img width="10" style="transform: rotate(270deg);" height="10"
-                                        src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                        alt="left-down2" />&nbsp;<%= fazendas[0].localidade %></a>
-                            </li>
+                            <% if( userFazenda == null) { %>
+                                <li class="accordion-subitem">
+                                    <a href="/naoencontrado"><img width="10"
+                                            style="transform: rotate(270deg);" height="10"
+                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                            alt="left-down2" />Nenhuma fazenda!</a>
+                                </li>
+                            <% }else{ %>
+                                <li class="accordion-subitem">
+                                    <a href="/fazenda/1"><img width="10"
+                                            style="transform: rotate(270deg);" height="10"
+                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                            alt="left-down2" />&nbsp;<%= fazendas[0].localidade %></a>
+                                </li>
+                            <% } %>
                         <% } %>
                     </ul>
                 </li>

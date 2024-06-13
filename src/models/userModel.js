@@ -4,7 +4,7 @@ async function authLogin(email, senha) {
     console.log('User Model accessed > function autenticarLogin');
 
     var sqlCommand = `
-        SELECT idUsuario, usuario, email, administrador, nomeEmpresa FROM usuario 
+        SELECT idUsuario, usuario, email, administrador, nomeEmpresa, fkFazenda FROM usuario 
         INNER JOIN empresa 
         ON idEmpresa = fkEmpresa 
         WHERE email = "${email}" AND senha = "${senha}";
@@ -22,7 +22,8 @@ async function authLogin(email, senha) {
                  bd_userName: resultQuery[0].usuario,
                  bd_userEmail: resultQuery[0].email,
                  bd_userAdmin: resultQuery[0].administrador,
-                 bd_userCompany: resultQuery[0].nomeEmpresa
+                 bd_userCompany: resultQuery[0].nomeEmpresa,
+                 bd_userFazenda: resultQuery[0].fkFazenda
             };
         } else {
             // Se o resultado estiver vazio, significa que o login falhou

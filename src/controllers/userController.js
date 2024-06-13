@@ -15,7 +15,8 @@ function login(req,res){
                     session_userName: resultadoQuery.bd_userName,
                     session_userEmail: resultadoQuery.bd_userEmail,
                     session_userAdmin: resultadoQuery.bd_userAdmin,
-                    session_userCompany: resultadoQuery.bd_userCompany
+                    session_userCompany: resultadoQuery.bd_userCompany,
+                    session_userFazenda: resultadoQuery.bd_userFazenda
                 };
                 res.redirect('/dashboard')
             }else{
