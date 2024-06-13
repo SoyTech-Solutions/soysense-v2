@@ -104,6 +104,9 @@ router.get('/:fazendaId', async function(req, res){
         const monitorsResponse = await userController.getMonitorsRegistered(user.session_userId);
         const monitors = monitorsResponse.bd_monitors;
 
+        const statusSensor = await fazendaController.getStatusSensor(user.session_userId);
+        const sensor = statusSensor.bd_sensor;
+
 
 
         res.render('fazenda', {
@@ -115,7 +118,8 @@ router.get('/:fazendaId', async function(req, res){
             userFazenda: user.session_userFazenda,
             fazendaId: fazendaId,
             fazendas: fazendas,
-            monitors: monitors
+            monitors: monitors,
+            sensor: sensor
         });
 
 

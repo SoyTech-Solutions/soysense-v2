@@ -38,8 +38,14 @@ async function countFazendaHec(userId){
 async function countSensors(userId){
     return await fazendaModel.countSensors(userId);
 }
+
+async function getStatusSensor(userId){
+    return await fazendaModel.getStatusSensors(userId);
+}
+
 module.exports = {
     registerFazenda,
     countFazendaHec,
-    countSensors
+    countSensors,
+    getStatusSensor
 }

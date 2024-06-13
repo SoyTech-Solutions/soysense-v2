@@ -53,15 +53,6 @@ app.use('/dashboard', dashboardRouter);
 app.use('/fazenda', fazendaRouter);
 app.use('/monitor', monitorRouter);
 app.use('/profile', profileRouter);
-
-
-// rota de teste
-var testeRouter = require('./src/routes/teste');
-
-// criando o grupo de rota principal /teste
-// qualquer rotas criadas dentro do testeRouter, é
-// apartir desse /teste
-app.use('/teste', testeRouter);
 // =====================================
 
 // ========= ABRINDO SERVIDOR ==========

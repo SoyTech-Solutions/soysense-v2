@@ -215,6 +215,9 @@ async function addMonitorToFazenda(idFazenda, idMonitor){
 
     return await database.execute(sqlCommand, [idFazenda, idMonitor]);
 }
+
+
+
 module.exports = {
     authLogin,
     getEmpresaByUsuario,
@@ -223,3 +226,4 @@ module.exports = {
     getFazendas,
     addMonitorToFazenda
 };
+

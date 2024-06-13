@@ -16,7 +16,8 @@ function login(req,res){
                     session_userEmail: resultadoQuery.bd_userEmail,
                     session_userAdmin: resultadoQuery.bd_userAdmin,
                     session_userCompany: resultadoQuery.bd_userCompany,
-                    session_userFazenda: resultadoQuery.bd_userFazenda
+                    session_userFazenda: resultadoQuery.bd_userFazenda,
+                    session_userSensor: resultadoQuery.bd_userSensor
                 };
                 res.redirect('/dashboard')
             }else{
@@ -36,6 +37,9 @@ async function getFazendas(userId){
 
 async function getMonitorsRegistered(userId){
     return await userModel.getMonitorsRegistered(userId)
+}
+async function getStatusSensor(userId){
+    return await userModel.getStatusSensor(userId)
 }
 
 async function registerMonitor(req, res){
@@ -84,5 +88,6 @@ module.exports = {
     getMonitorsRegistered,
     registerMonitor,
     getFazendas,
-    addMonitorToFazenda
+    addMonitorToFazenda,
+    getStatusSensor
 }
