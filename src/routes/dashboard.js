@@ -17,9 +17,9 @@ router.get('/', async function(req, res) {
         fazendas = fazendasResponse.bd_fazendas;
 
         let countFazendaHec = await fazendaController.countFazendaHec(user.session_userId);
+        let countSensors = await fazendaController.countSensors(user.session_userId);
 
-        console.log(countFazendaHec)
-        
+    
  
         res.render('dashboard', {
             userId: user.session_userId,
@@ -27,8 +27,10 @@ router.get('/', async function(req, res) {
             userEmail: user.session_userEmail,
             userAdmin: user.session_userAdmin,
             userCompany: user.session_userCompany,
+            userFazenda: user.session_userFazenda,
             fazendas: fazendas,
-            countFazendaHec: countFazendaHec
+            countFazendaHec: countFazendaHec,
+            countSensors: countSensors,
         });
 
     }else{

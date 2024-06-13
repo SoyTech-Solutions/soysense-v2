@@ -19,8 +19,6 @@
     <!-- <script src="/js/graficos-simulativo-dashboard.js" defer></script> -->
 
 
-
-
     <!-- styles -->
     <link rel="stylesheet" href="/css/global-style.css">
     <link rel="stylesheet" href="/css/side-bar.css">
@@ -55,63 +53,78 @@
                         Dashboard
                     </a>
                 </li>
-                <% if(userAdmin==1){ %>
-                    <li class="accordion-item">
-                        <div class="accordion-item-header">
-                            <img width="20" height="20"
-                                src="https://img.icons8.com/material-outlined/24/FFFFFF/maintenance.png"
-                                alt="maintenance" />
-                            <span>Gerenciar</span>
-                        </div>
-
-                        <ul class="accordion-submenu">
-                            <li class="accordion-subitem">
-                                <a href="/monitor"><img width="10" style="transform: rotate(270deg);" height="10"
-                                        src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                        alt="left-down2" />&nbsp; Monitor
-                                </a>
-                            </li>
-                            <li class="accordion-subitem">
-                                <a href="/fazenda"><img width="10" style="transform: rotate(270deg);" height="10"
-                                        src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                        alt="left-down2" />&nbsp; Fazendas
-                                </a>
-                            </li>
-                            <li class="accordion-subitem">
-                                <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
-                                        src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                        alt="left-down2" />&nbsp;Sensor
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <% } %>
-                        <li class="accordion-item">
-                            <div class="accordion-item-header">
-                                <img width="17" height="17"
-                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/address.png"
-                                    alt="address" />
-                                <span>Fazendas</span>
-                            </div>
-                            <ul class="accordion-submenu ">
-                                <% if(userAdmin==1) { %>
-                                    <% fazendas.forEach((fazenda)=>{ %>
-                                        <li class="accordion-subitem">
-                                            <a href="/fazenda/<%= fazenda.idFazenda %>"><img width="10"
-                                                    style="transform: rotate(270deg);" height="10"
-                                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                                    alt="left-down2" />&nbsp;<%= fazenda.localidade %></a>
-                                        </li>
-                                        <% }) %>
-                                            <% }else { %>
-                                                <li class="accordion-subitem">
-                                                    <a href="/fazenda/1"><img width="10"
-                                                            style="transform: rotate(270deg);" height="10"
-                                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                                            alt="left-down2" />&nbsp;<%= fazendas[0].localidade %></a>
-                                                </li>
-                                                <% } %>
-                            </ul>
+                <% if(userAdmin == 1){ %>
+                <li class="accordion-item">
+                    <div class="accordion-item-header">
+                        <img width="20" height="20"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/maintenance.png"
+                            alt="maintenance" />
+                        <span>Gerenciar</span>
+                    </div>
+                   
+                    <ul class="accordion-submenu">
+                        <li class="accordion-subitem">
+                            <a href="/monitor"><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp; Monitor 
+                            </a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href="/fazenda"><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp; Fazendas
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <% } %>
+                <li class="accordion-item">
+                    <div class="accordion-item-header">
+                        <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/address.png"
+                            alt="address" />
+                        <span>Fazendas</span>
+                    </div>
+                    <ul class="accordion-submenu ">
+                        <% if(userAdmin==1) { %>
+                            <% fazendas.forEach((fazenda)=>{ %>
+                                <li class="accordion-subitem">
+                                    <a href="/fazenda/<%= fazenda.idFazenda %>"><img width="10"
+                                            style="transform: rotate(270deg);" height="10"
+                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                            alt="left-down2" />&nbsp;<%= fazenda.localidade %></a>
+                                </li>
+                            <% }) %>
+                        <% }else { %>
+                            <% if( userFazenda == null) { %>
+                                <li class="accordion-subitem">
+                                    <a href="/naoencontrado"><img width="10"
+                                            style="transform: rotate(270deg);" height="10"
+                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                            alt="left-down2" />Nenhuma fazenda!</a>
+                                </li>
+                            <% }else{ %>
+                                <li class="accordion-subitem">
+                                    <a href="/fazenda/1"><img width="10"
+                                            style="transform: rotate(270deg);" height="10"
+                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                            alt="left-down2" />&nbsp;<%= fazendas[0].localidade %></a>
+                                </li>
+                            <% } %>
+                        <% } %>
+                    </ul>
+                </li>
+                <li class="accordion-item">
+                    <div class="accordion-item-header">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/document--v1.png"
+                            alt="document--v1" />
+                        <span>Relatório</span>
+                    </div>
+                    <ul class="accordion-submenu">
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Desempenho</a>
                         </li>
                         <li class="accordion-item">
                             <div class="accordion-item-header">
@@ -146,31 +159,36 @@
                                 Benchmarking
                             </a>
                         </li>
-                        <li class="accordion-item">
-                            <div class="accordion-item-header">
-                                <img width="17" height="17"
-                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/settings--v1.png"
-                                    alt="settings--v1" />
-                                <span>Configuração</span>
-                            </div>
-                            <ul class="accordion-submenu">
-                                <li class="accordion-subitem">
-                                    <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
-                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                            alt="left-down2" />&nbsp;Perfil</a>
-                                </li>
-                                <li class="accordion-subitem">
-                                    <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
-                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                            alt="left-down2" />&nbsp;Personalizar</a>
-                                </li>
-                                <li class="accordion-subitem">
-                                    <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
-                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                            alt="left-down2" />&nbsp;Suporte</a>
-                                </li>
-                            </ul>
+                    </ul>
+                </li>
+                <li class="nav-normal-item">
+                    <a href="">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/fine-print.png" alt="fine-print" />
+                        Benchmarking
+                    </a>
+                </li>
+                <li class="accordion-item">
+                    <div class="accordion-item-header">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/settings--v1.png"
+                            alt="settings--v1" />
+                        <span>Configuração</span>
+                    </div>
+                    <ul class="accordion-submenu">
+                        
+                        <li class="accordion-subitem">
+                            <a href="/profile"><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Perfil</a>
                         </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Suporte</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <div class="footer-aside">
@@ -227,8 +245,8 @@
 
             <div class="summary-card">
                 <div class="summary-main">
-                    <span>Sensor: DHT11</span>
-                    <h1>100 Unidades</h1>
+                    <span>Sensor: <%= countSensors[0].tipo.toUpperCase() %></span>
+                    <h1> <%= countSensors[0].quantidade %> Unidades</h1>
                 </div>
                 <div class="summary-footer ">
                     <h1>Umidade</h1>
@@ -237,8 +255,8 @@
 
             <div class="summary-card">
                 <div class="summary-main">
-                    <span>Sensor: LM35</span>
-                    <h1>100 Unidades</h1>
+                    <span>Sensor:  <%= countSensors[1].tipo.toUpperCase() %></span>
+                    <h1><%= countSensors[1].quantidade %> Unidades</h1>
                 </div>
                 <div class="summary-footer ">
                     <h1>Temperatura</h1>

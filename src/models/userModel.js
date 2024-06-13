@@ -4,7 +4,7 @@ async function authLogin(email, senha) {
     console.log('User Model accessed > function autenticarLogin');
 
     var sqlCommand = `
-        SELECT idUsuario, usuario, email, administrador, nomeEmpresa FROM usuario 
+        SELECT idUsuario, usuario, email, administrador, nomeEmpresa, fkFazenda FROM usuario 
         INNER JOIN empresa 
         ON idEmpresa = fkEmpresa 
         WHERE email = "${email}" AND senha = "${senha}";
@@ -22,7 +22,8 @@ async function authLogin(email, senha) {
                  bd_userName: resultQuery[0].usuario,
                  bd_userEmail: resultQuery[0].email,
                  bd_userAdmin: resultQuery[0].administrador,
-                 bd_userCompany: resultQuery[0].nomeEmpresa
+                 bd_userCompany: resultQuery[0].nomeEmpresa,
+                 bd_userFazenda: resultQuery[0].fkFazenda
             };
         } else {
             // Se o resultado estiver vazio, significa que o login falhou
@@ -151,7 +152,7 @@ async function getMonitorsRegistered(userId) {
         
     if (empresaResponse.success) {
         const sqlCommand = `
-            SELECT idUsuario, usuario, email, administrador
+            SELECT idUsuario, usuario, email, administrador, fkFazenda
             FROM usuario 
             WHERE fkEmpresa = ? ;
         `;
@@ -200,10 +201,25 @@ async function registerMonitor(idAdmin, username, email, password){
         };
     }
 }
+
+async function addMonitorToFazenda(idFazenda, idMonitor){
+    console.log('User Model accessed > function addMonitorToFazenda');
+
+    console.log(idMonitor)
+
+    const sqlCommand = `
+        UPDATE usuario
+        SET fkFazenda = ?
+        WHERE idUsuario = ?;
+    `;
+
+    return await database.execute(sqlCommand, [idFazenda, idMonitor]);
+}
 module.exports = {
     authLogin,
     getEmpresaByUsuario,
     getMonitorsRegistered,
     registerMonitor,
-    getFazendas
+    getFazendas,
+    addMonitorToFazenda
 };

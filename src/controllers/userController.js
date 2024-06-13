@@ -15,7 +15,8 @@ function login(req,res){
                     session_userName: resultadoQuery.bd_userName,
                     session_userEmail: resultadoQuery.bd_userEmail,
                     session_userAdmin: resultadoQuery.bd_userAdmin,
-                    session_userCompany: resultadoQuery.bd_userCompany
+                    session_userCompany: resultadoQuery.bd_userCompany,
+                    session_userFazenda: resultadoQuery.bd_userFazenda
                 };
                 res.redirect('/dashboard')
             }else{
@@ -68,10 +69,20 @@ async function registerMonitor(req, res){
 
 }
 
+async function addMonitorToFazenda(req, res){
+    const idMonitor = req.body.idMonitor;
+    const idFazenda = req.body.idFazenda;
+
+    if(idMonitor != '#'){
+        userModel.addMonitorToFazenda(idFazenda, idMonitor);
+        return true;
+    }
+}
  
 module.exports = {
     login,
     getMonitorsRegistered,
     registerMonitor,
-    getFazendas
+    getFazendas,
+    addMonitorToFazenda
 }

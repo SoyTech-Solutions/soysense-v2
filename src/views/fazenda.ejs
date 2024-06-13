@@ -13,7 +13,8 @@
 
     <!-- estático js script -->
     <script src="/js/side-bar.js" defer></script>
-    <script src="/js/graficos-simulativo-fazenda.js" defer></script>
+    <script src="/js/open-addmonitor.js" defer></script>
+    <!-- <script src="/js/graficos-simulativo-fazenda.js" defer></script> -->
 
 
 
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="/css/side-bar.css">
     <link rel="stylesheet" href="/css/fazenda.css">
     <link rel="stylesheet" href="/css/header-main.css">
+    <link rel="stylesheet" href="/css/adicionar-monitor.css">
 </head>
 
 <body>
@@ -73,12 +75,6 @@
                                         alt="left-down2" />&nbsp; Fazenda
                                 </a>
                             </li>
-                            <li class="accordion-subitem">
-                                <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
-                                        src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                        alt="left-down2" />&nbsp;Sensor
-                                </a>
-                            </li>
                         </ul>
                     </li>
                     <% } %>
@@ -98,15 +94,24 @@
                                                     src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
                                                     alt="left-down2" />&nbsp;<%= fazenda.localidade %></a>
                                         </li>
-                                        <% }) %>
-                                            <% }else { %>
-                                                <li class="accordion-subitem">
-                                                    <a href="/fazenda/1"><img width="10"
-                                                            style="transform: rotate(270deg);" height="10"
-                                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                                            alt="left-down2" />&nbsp;<%= fazendas[0].localidade %></a>
-                                                </li>
-                                                <% } %>
+                                    <% }) %>
+                                <% }else { %>
+                                    <% if( userFazenda == null) { %>
+                                        <li class="accordion-subitem">
+                                            <a href="/naoencontrado"><img width="10"
+                                                    style="transform: rotate(270deg);" height="10"
+                                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                                    alt="left-down2" />Nenhuma fazenda!</a>
+                                        </li>
+                                    <% }else{ %>
+                                        <li class="accordion-subitem">
+                                            <a href="/fazenda/1"><img width="10"
+                                                    style="transform: rotate(270deg);" height="10"
+                                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                                    alt="left-down2" />&nbsp;<%= fazendas[0].localidade %></a>
+                                        </li>
+                                    <% } %>
+                                <% } %>
                             </ul>
                         </li>
                         <li class="accordion-item">
@@ -151,14 +156,9 @@
                             </div>
                             <ul class="accordion-submenu">
                                 <li class="accordion-subitem">
-                                    <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    <a href="/profile"><img width="10" style="transform: rotate(270deg);" height="10"
                                             src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
                                             alt="left-down2" />&nbsp;Perfil</a>
-                                </li>
-                                <li class="accordion-subitem">
-                                    <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
-                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
-                                            alt="left-down2" />&nbsp;Personalizar</a>
                                 </li>
                                 <li class="accordion-subitem">
                                     <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
@@ -185,6 +185,9 @@
             <div class="inner-header">
                 <h1>Complexo</h1>
                 <a href="#">/fazenda/<%= fazendaId %></a>
+                <% if(userAdmin == 1){ %>
+                    <button id="openModalAdicionarMonitor" class="button-adicionar-monitor">Adicionar Monitor</button>
+                <% }%>
             </div>
         </header>
         <section class="summary-container">
@@ -328,6 +331,36 @@
                 </section>
             </section>
         </section>
+        <div id="modalAdicionarMonitor" class="modal">
+            <div class="modal-content">
+                <div class="header-modal">
+                    <span class="close" id="closeAdicionarMonitor">&times;</span>
+                </div>
+                <div class="cadastro-box">
+                    <h1>Adicione um monitor à essa fazenda</h1>
+                    <form id="form_cadastrar_monitor" action="/fazenda/addMonitor" method="POST">
+                        <div class="row">
+                            <div class="col select-monitor">
+                                <select style="height: 40px;" name="idMonitor">
+                                    <option value="#">Selecione um monitor...</option>
+                                    <% monitors.forEach((monitor)=>{ %>
+                                        <% if( monitor.fkFazenda == null && monitor.administrador != 1){ %>
+                                            <option value="<%= monitor.idUsuario %>"><%= monitor.usuario %></option>
+                                        <% } %>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input name="idFazenda" type="hidden" value="<%= fazendaId %>">
+                                <button type="submit">Adicionar Monitor</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
     <script>
         var umidCard = document.querySelector('#umid-card');

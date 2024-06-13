@@ -24,6 +24,7 @@ router.get('/', async function(req, res){
             userEmail: user.session_userEmail,
             userAdmin: user.session_userAdmin,
             userCompany: user.session_userCompany,
+            userFazenda: user.session_userFazenda,
             fazendaId: fazendaId,
             fazendas: fazendas
         });
@@ -74,7 +75,7 @@ router.get('/iframe', async function(req, res){
 
 })
 
-router.post('/registrar', async (req,res)=>{
+router.post('/register', async (req,res)=>{
     if (req.session.authenticated) {
         await fazendaController.registerFazenda(req,res);
         res.redirect('/fazenda/iframe');
@@ -100,6 +101,10 @@ router.get('/:fazendaId', async function(req, res){
         fazendasResponse = await userController.getFazendas(user.session_userId);
         fazendas = fazendasResponse.bd_fazendas;
 
+        const monitorsResponse = await userController.getMonitorsRegistered(user.session_userId);
+        const monitors = monitorsResponse.bd_monitors;
+
+
 
         res.render('fazenda', {
             userId: user.session_userId,
@@ -107,8 +112,10 @@ router.get('/:fazendaId', async function(req, res){
             userEmail: user.session_userEmail,
             userAdmin: user.session_userAdmin,
             userCompany: user.session_userCompany,
+            userFazenda: user.session_userFazenda,
             fazendaId: fazendaId,
-            fazendas: fazendas
+            fazendas: fazendas,
+            monitors: monitors
         });
 
 
@@ -119,6 +126,17 @@ router.get('/:fazendaId', async function(req, res){
     }
 })
 
+router.post('/addMonitor', async (req,res)=>{
+    if (req.session.authenticated) {
+        await userController.addMonitorToFazenda(req,res);
+        res.redirect('/monitor')
+
+    }else{
+        req.session.hasError = true;
+        req.session.errorMessage = 'Faça login antes para registrar monitores!'
+        res.redirect('/');
+    }
+})
 
 // testando um ngc n mexe please
 module.exports = router;

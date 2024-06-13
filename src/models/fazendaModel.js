@@ -54,7 +54,35 @@ async function countFazendaHec(userId){
     }
 }
 
+async function countSensors(userId){
+    console.log('User model accessed > function countFazendaHec');
+
+    const empresaResponse = await userModel.getEmpresaByUsuario(userId);
+
+    if(empresaResponse.success) {
+        const sqlCommand = `                          
+            SELECT tipo, COUNT(*) AS quantidade
+            FROM sensor
+            JOIN fazenda ON sensor.fkFazenda = fazenda.idFazenda
+            JOIN empresa ON fazenda.fkEmpresa = empresa.idEmpresa
+            WHERE empresa.idEmpresa = ?
+            GROUP BY tipo;
+        `;
+
+        console.log('Running SQL command: \n' + sqlCommand);
+
+        return await database.execute(sqlCommand, [empresaResponse.bd_idEmpresa]);
+
+    }else {
+        return {
+            success: false,
+            message: 'Error to get monitors registered',
+        };
+    }
+}
+
 module.exports = {
     registerFazenda,
-    countFazendaHec
+    countFazendaHec,
+    countSensors
 };
