@@ -352,7 +352,7 @@
                     <form id="form_cadastrar_monitor" action="/fazenda/addMonitor" method="POST">
                         <div class="row">
                             <div class="col select-monitor">
-                                <select style="height: 40px;">
+                                <select style="height: 40px;" name="idMonitor">
                                     <option value="#">Selecione um monitor...</option>
                                     <% monitors.forEach((monitor)=>{ %>
                                         <% if( monitor.fkFazenda == null && monitor.administrador != 1){ %>
@@ -364,7 +364,6 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <input name="idAdmin" type="hidden" value="<%= userId %>">
                                 <input name="idFazenda" type="hidden" value="<%= fazendaId %>">
                                 <button type="submit">Adicionar Monitor</button>
                             </div>

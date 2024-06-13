@@ -201,10 +201,25 @@ async function registerMonitor(idAdmin, username, email, password){
         };
     }
 }
+
+async function addMonitorToFazenda(idFazenda, idMonitor){
+    console.log('User Model accessed > function addMonitorToFazenda');
+
+    console.log(idMonitor)
+
+    const sqlCommand = `
+        UPDATE usuario
+        SET fkFazenda = ?
+        WHERE idUsuario = ?;
+    `;
+
+    return await database.execute(sqlCommand, [idFazenda, idMonitor]);
+}
 module.exports = {
     authLogin,
     getEmpresaByUsuario,
     getMonitorsRegistered,
     registerMonitor,
-    getFazendas
+    getFazendas,
+    addMonitorToFazenda
 };

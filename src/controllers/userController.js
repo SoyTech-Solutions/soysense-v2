@@ -70,7 +70,13 @@ async function registerMonitor(req, res){
 }
 
 async function addMonitorToFazenda(req, res){
-    console.log(req.body)
+    const idMonitor = req.body.idMonitor;
+    const idFazenda = req.body.idFazenda;
+
+    if(idMonitor != '#'){
+        userModel.addMonitorToFazenda(idFazenda, idMonitor);
+        return true;
+    }
 }
  
 module.exports = {
