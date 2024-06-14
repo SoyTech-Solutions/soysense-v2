@@ -150,7 +150,7 @@
                                     alt="left-down2" />&nbsp;Perfil</a>
                         </li>
                         <li class="accordion-subitem">
-                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                            <a href="soytech.atlassian.net/servicedesk/customer/portals"><img width="10" style="transform: rotate(270deg);" height="10"
                                     src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
                                     alt="left-down2" />&nbsp;Suporte</a>
                         </li>
@@ -180,20 +180,20 @@
             <div class="summary-card">
                 <div class="summary-main" id="temp-card">
                     <span>Alerta: Temperatura</span>
-                    <h1 id="critico-titulo-temp"></h1>
+                    <h1 id="critico-titulo-temp">0</h1>
                 </div>
                 <div class="summary-footer ">
-                    <h1>Crítico: Fazenda X</h1>
+                    <h1>Crítico: Nenhuma fazenda com problema</h1>
                 </div>
             </div>
             <!-- id="desempenho-titulo" -->
             <div class="summary-card">
                 <div class="summary-main">
                     <span>Alerta: Umidade</span>
-                    <h1>10%</h1>
+                    <h1>13%</h1>
                 </div>
                 <div class="summary-footer ">
-                    <h1>Crítico: Fazenda Y</h1>
+                    <h1>Crítico: Nenhuma fazenda com problema</h1>
                 </div>
             </div>
             <div class="summary-card">
@@ -259,63 +259,10 @@
                                         <td>Fazenda A</td>
                                         <td>2023-10-26</td>
                                         <td>DHT11</td>
-                                        <td>25°C</td>
+                                        <td>25%</td>
                                     </tr>
                                     <!-- Adicione mais linhas aqui para testar o scroll -->
-                                    <tr>
-                                        <td>Fazenda B</td>
-                                        <td>2023-10-27</td>
-                                        <td>DHT22</td>
-                                        <td>24°C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fazenda C</td>
-                                        <td>2023-10-28</td>
-                                        <td>DHT22</td>
-                                        <td>26°C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fazenda D</td>
-                                        <td>2023-10-29</td>
-                                        <td>DHT22</td>
-                                        <td>23°C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fazenda E</td>
-                                        <td>2023-10-30</td>
-                                        <td>DHT22</td>
-                                        <td>22°C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fazenda F</td>
-                                        <td>2023-10-31</td>
-                                        <td>DHT22</td>
-                                        <td>21°C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fazenda G</td>
-                                        <td>2023-11-01</td>
-                                        <td>DHT22</td>
-                                        <td>20°C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fazenda G</td>
-                                        <td>2023-11-01</td>
-                                        <td>DHT22</td>
-                                        <td>20°C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fazenda G</td>
-                                        <td>2023-11-01</td>
-                                        <td>DHT22</td>
-                                        <td>20°C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fazenda G</td>
-                                        <td>2023-11-01</td>
-                                        <td>DHT22</td>
-                                        <td>20°C</td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -351,7 +298,7 @@
 
                     ],
                     datasets: [{
-                        data: [100, 100],
+                        data: [<%=countSensors[0].quantidade %>,<%=countSensors[1].quantidade %>],
                         backgroundColor: [
                             '#008AE6',
                             '#F89500',

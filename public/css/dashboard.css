@@ -8,11 +8,11 @@
 }
 
 .summary-card:nth-child(1)>.summary-footer {
-    background-color: rgb(208, 22, 22);
+    background-color: rgb(115, 208, 22);
 }
 
 .summary-card:nth-child(1)>.summary-main {
-    background-color: rgb(235, 22, 22);
+    background-color: rgb(115, 208, 22);
     color: #fff;
 }
 
@@ -28,11 +28,11 @@
 
 /* card 2 */
 .summary-card:nth-child(2)>.summary-footer {
-    background-color: rgb(208, 22, 22);
+    background-color: rgb(115, 208, 22);
 }
 
 .summary-card:nth-child(2)>.summary-main {
-    background-color: rgb(235, 22, 22);
+    background-color: rgb(115, 208, 22);
     color: #fff;
 }
 
