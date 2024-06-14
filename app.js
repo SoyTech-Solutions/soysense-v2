@@ -45,14 +45,16 @@ app.use(session({
 var indexRouter = require("./src/routes/index");
 var dashboardRouter = require("./src/routes/dashboard");
 var fazendaRouter = require("./src/routes/fazenda");
-var monitorRouter = require('./src/routes/monitor')
-var profileRouter = require('./src/routes/profile')
+var monitorRouter = require('./src/routes/monitor');
+var profileRouter = require('./src/routes/profile');
+var medidasRouter = require('./src/routes/medidas');
 
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/fazenda', fazendaRouter);
 app.use('/monitor', monitorRouter);
 app.use('/profile', profileRouter);
+app.use('/medidas', medidasRouter);
 // =====================================
 
 // ========= ABRINDO SERVIDOR ==========

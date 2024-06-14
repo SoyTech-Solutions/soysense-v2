@@ -40,6 +40,7 @@ async function countSensors(userId){
 }
 
 async function getStatusSensor(userId){
+    console.log( await fazendaModel.getStatusSensors(userId))
     return await fazendaModel.getStatusSensors(userId);
 }
 

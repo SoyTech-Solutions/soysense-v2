@@ -193,7 +193,9 @@
         <section class="summary-container">
             <div class="summary-card">
                 <div class="summary-main alerta-bloco" id="temp-card">
+                    <h1 id="text-temp">
 
+                    </h1>
                 </div>
                 <div class="summary-footer alerta-bloco">
                     <h1>Temperatura (°C)</h1>
@@ -201,7 +203,9 @@
             </div>
             <div class="summary-card">
                 <div class="summary-main" id="umid-card">
+                     <h1 id="text-umid"> 
 
+                     </h1>
                 </div>
                 <div class="summary-footer ">
                     <h1>Umidade (%)</h1>
@@ -209,10 +213,16 @@
             </div>
             <div class="summary-card">
                 <div class="summary-main">
-                    <h1>90%</h1>
+                    
+                    <%
+                        var calculoDesempenhoTemperatura = Number((sensor[3].quantidade / (sensor[3].quantidade + sensor[2].quantidade) * 100).toFixed(2));
+                        var calculoDesempenhoUmidade = Number((sensor[1].quantidade / (sensor[1].quantidade + sensor[0].quantidade) * 100).toFixed(2));
+                        var mediaDesempenho = (calculoDesempenhoUmidade + calculoDesempenhoTemperatura) / 2 
+                    %>
+                    <h1><%= mediaDesempenho %>%</h1>
                 </div>
                 <div class="summary-footer ">
-                    <h1>Desempenho</h1>
+                    <h1>Desempenho Total</h1>
                 </div>
             </div>
             <div class="summary-card">
@@ -277,8 +287,12 @@
                                         <th>Medição</th>
                                     </tr>
                                     <tr>
-                                        <td>21/9</td>
-                                        <td>57%</td>
+                                        <td>
+                                            <%= sensor[1].quantidade %> / <%= sensor[1].quantidade + sensor[0].quantidade %>
+                                        </td>
+                                        <td>
+                                            <%= calculoDesempenhoUmidade %>%
+                                        </td>
                                         <td>Umidade</td>
                                     </tr>
                                 </table>
@@ -320,8 +334,12 @@
                                         <th>Medição</th>
                                     </tr>
                                     <tr>
-                                        <td>11/1</td>
-                                        <td>91%</td>
+                                        <td>
+                                            <%= sensor[3].quantidade %> / <%= sensor[2].quantidade + sensor[3].quantidade %>
+                                        </td>
+                                        <td>
+                                            <%= calculoDesempenhoTemperatura %>%
+                                        </td>
                                         <td>Temperatura (C°)</td>
                                     </tr>
                                 </table>
@@ -363,6 +381,63 @@
         </div>
     </main>
     <script>
+let medidasUmidade = [0];
+let medidasTemperatura = [0];
+let horariosCaptura = [];
+
+setInterval(() => {
+    fetch(`/medidas/ultimas/<%= fazendaId %>`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                if (medidasUmidade.length > 9) {
+                    horariosCaptura.shift();
+                    medidasUmidade.shift(); // Remove o primeiro elemento se exceder 10 registros
+                }
+                if (medidasTemperatura.length > 9) {
+                    medidasTemperatura.shift(); // Remove o primeiro elemento se exceder 10 registros
+                }
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                let horaAtual = new Date().toLocaleTimeString(); // Captura a hora atual
+                horariosCaptura.push(horaAtual); // Adiciona a hora atual ao início do array
+
+                medidasTemperatura.push(resposta[1].media_dados);
+                let textTemp = document.querySelector('#text-temp');
+                let valorTemperatura = Number(medidasTemperatura[medidasTemperatura.length - 1]).toFixed(1); // Exemplo de pegar o primeiro valor e formatar com 1 decimal
+                textTemp.textContent = `${valorTemperatura} C`;
+
+                medidasUmidade.push(resposta[0].media_dados);
+                let textUmid = document.querySelector('#text-umid');
+                let valorUmidade = parseFloat(medidasUmidade[medidasUmidade.length - 1]).toFixed(0);
+                textUmid.textContent = `${valorUmidade}%`;
+
+                console.log(medidasTemperatura);
+
+
+                updateGraphic(); // Atualiza os gráficos
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}, 1000);
+
+function updateGraphic() {
+    // Atualiza os gráficos de temperatura e umidade
+    lm35Temperatura.data.datasets[0].data = medidasTemperatura;
+    dht11Umidade.data.datasets[0].data = medidasUmidade;
+
+    // Atualiza os labels do eixo X com os horários de captura
+    lm35Temperatura.data.labels = horariosCaptura.slice(0, 10); // Limita a 10 registros
+    dht11Umidade.data.labels = horariosCaptura.slice(0, 10); // Limita a 10 registros
+
+    // Atualiza os gráficos
+    lm35Temperatura.update();
+    dht11Umidade.update();
+}
         var umidCard = document.querySelector('#umid-card');
         var tempCard = document.querySelector('#temp-card');
 
@@ -425,7 +500,7 @@
                         'Inativos',
                     ],
                     datasets: [{
-                        data: [10, 1],
+                        data: [<%= sensor[1].quantidade %>, <%= sensor[0].quantidade %>],
                         backgroundColor: [
                             '#008ae6',
                             '#ff0000',
@@ -491,7 +566,7 @@
                 type: 'pie',
                 data: {
                     datasets: [{
-                        data: [9, 11],
+                        data: [<%= sensor[2].quantidade %>, <%= sensor[3].quantidade %>],
                         backgroundColor: [
                             'rgb(235, 22, 22) ',
                             '#008ae6',
